@@ -9,7 +9,7 @@ services:
   npm:
     image: node
     volumes:
-      - './src:/var/www/html'
+      - './:/var/www/html'
     working_dir: /var/www/html
     entrypoint:
       - npm
