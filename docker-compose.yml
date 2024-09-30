@@ -11,10 +11,10 @@ services:
     volumes:
       - './:/var/www/html'
     working_dir: /var/www/html
-    deploy:
-      resources:
-        limits:
-          cpus: '0.5'  # Limit CPU to 50% of one core
-          memory: '1g'  # Limit memory to 1GB
+    # deploy:
+    #   resources:
+    #     limits:
+    #       cpus: '0.5'  # Limit CPU to 50% of one core
+    #       memory: '1g'  # Limit memory to 1GB
     entrypoint:
       - npm
