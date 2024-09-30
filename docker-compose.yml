@@ -7,7 +7,7 @@ services:
       - './dist:/var/www/html'
       - './nginx-default.conf:/etc/nginx/conf.d/default.conf'
   npm:
-    image: node:22-alpine3.19
+    image: node:alpine
     volumes:
       - './:/var/www/html'
     working_dir: /var/www/html
