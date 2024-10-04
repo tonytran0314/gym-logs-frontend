@@ -2,7 +2,7 @@
 </script>
 
 <template>
-  <div class="text-2xl bg-emerald-600 text-white">Trần Gia Huy</div>
+  <RouterView />
 </template>
 
 <style scoped>

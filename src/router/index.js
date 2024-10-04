@@ -1,11 +1,14 @@
-import { createMemoryHistory, createRouter } from 'vue-router'
+import { createWebHistory, createRouter } from 'vue-router'
+
+import AuthenticationView from '@/views/AuthView.vue'
 
 const routes = [
-//   { path: '/signup', component: HomeView },
-//   { path: '/login', component: AboutView },
+  { path: '/signup', component: AuthenticationView },
 ]
 
 const router = createRouter({
-  history: createMemoryHistory(),
+  history: createWebHistory(),
   routes,
 })
+
+export default router
