@@ -3,8 +3,8 @@
 </script>
 
 <template>
-    <div>
-        This is test view
+    <div class="bg-emerald-600 text-white">
+        This is a test view
     </div>
 </template>
 
