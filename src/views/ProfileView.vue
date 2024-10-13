@@ -2,11 +2,13 @@
     import { useAuthStore } from '@/stores/authStore'
 
     const auth = useAuthStore()
+    console.log(auth.isAuthenticated.value)
 </script>
 
 <template>
     <div>
-        This is Profile View
+        <router-link to="/login" class="text-3xl">Login</router-link>
+        <router-link to="/signup" class="text-3xl">Signup</router-link>
     </div>
     
     <form @submit.prevent="auth.logout">

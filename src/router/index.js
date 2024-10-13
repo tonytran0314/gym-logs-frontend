@@ -1,29 +1,25 @@
 import { createWebHistory, createRouter } from 'vue-router'
 
-import AuthenticationView from '@/views/AuthView.vue'
-import TestView from '@/views/TestView.vue'
-import ProfileView from '@/views/ProfileView.vue';
-
 const routes = [
   { 
     path: '/', 
-    component: TestView,
-    name: 'Home'
+    name: 'Home',
+    component: () => import('@/views/TestView.vue'),
   },
   { 
     path: '/signup', 
-    component: AuthenticationView,
-    name: 'Signup'
+    name: 'Signup',
+    component: () => import('@/views/AuthenticationView.vue'),
   },
   { 
     path: '/login', 
-    component: AuthenticationView,
-    name: 'Login'
+    name: 'Login',
+    component: () => import('@/views/AuthenticationView.vue'),
   },
   { 
     path: '/profile', 
-    component: ProfileView,
-    name: 'Profile'
+    name: 'Profile',
+    component: () => import('@/views/ProfileView.vue'),
   },
 ]
 

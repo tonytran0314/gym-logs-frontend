@@ -1,60 +1,44 @@
 import { defineStore } from 'pinia'
 import { useRouter } from 'vue-router'
+import { ref } from 'vue'
 import axios from '@/services/axios.js'
 
 export const useAuthStore = defineStore('authStore', () => {
 
     const router = useRouter()
+    let isAuthenticated = ref(false)
 
-    const login = () => {
+    const login = async () => {
         const email = 'test@example.com'
         const password = 'password'
 
         try {
-            axios.get('/api/info')
-            .then((response) => {
-                console.log(response)
-            })
-            .catch((error) => {
-                console.log(error)
-            }) 
+            await axios.get('/sanctum/csrf-cookie')
 
-            axios.get('/sanctum/csrf-cookie')
-            .then(() => {
+            const response = await axios.post('/api/login', { email, password })
 
-                axios.post('/api/login', { email, password })
-                .then((response) => {
-
-                    console.log('Login successful! :', response.data)
-
-                    axios.get('/api/info')
-                    .then((response) => {
-                        console.log(response)
-                    })
-                    .catch((error) => {
-                        console.log(error)
-                    }) 
-
-                    router.push({ name: 'Profile' })
-
-                }).catch((error) => {
-                    console.log(error)
-                });
-
-            }).catch((error) => {
-                console.log(error);
-            });
+            if (response.status === 200) {
+                authenticateUser()
+                goToProfilePage()
+            } 
         } 
         catch (error) {
             console.log(error);
         }
     }
 
-    const logout = () => {
-        
+    const logout = () => {}
+
+    const goToProfilePage = () => {
+        router.push({ name: 'Profile' })
+    }
+
+    const authenticateUser = () => {
+        isAuthenticated.value = true
     }
 
     return {
+        isAuthenticated,
         login,
         logout
     }
