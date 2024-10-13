@@ -1,7 +1,11 @@
 import { defineStore } from 'pinia'
+import { useRouter } from 'vue-router'
 import axios from '@/services/axios.js'
 
 export const useAuthStore = defineStore('authStore', () => {
+
+    const router = useRouter()
+
     const login = () => {
         const email = 'test@example.com'
         const password = 'password'
@@ -31,6 +35,8 @@ export const useAuthStore = defineStore('authStore', () => {
                         console.log(error)
                     }) 
 
+                    router.push({ name: 'Profile' })
+
                 }).catch((error) => {
                     console.log(error)
                 });
@@ -44,7 +50,12 @@ export const useAuthStore = defineStore('authStore', () => {
         }
     }
 
+    const logout = () => {
+        
+    }
+
     return {
-        login
+        login,
+        logout
     }
 })
