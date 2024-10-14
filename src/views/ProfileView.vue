@@ -2,7 +2,6 @@
     import { useAuthStore } from '@/stores/authStore'
 
     const auth = useAuthStore()
-    console.log(auth.isAuthenticated.value)
 </script>
 
 <template>
