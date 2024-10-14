@@ -21,10 +21,21 @@ export const useAuthStore = defineStore('authStore', () => {
         }
     }
 
-    const logout = () => {}
+    const logout = async () => {
+        try {
+            await axios.post('/api/logout')
+            goToLoginPage()
+        } catch (error) {
+            console.log(error)
+        }
+    }
 
     const goToProfilePage = () => {
         router.push({ name: 'Profile' })
+    }
+
+    const goToLoginPage = () => {
+        router.push({ name: 'Login' })
     }
 
     return {
