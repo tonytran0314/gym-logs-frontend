@@ -38,8 +38,18 @@ export const useAuthStore = defineStore('authStore', () => {
         router.push({ name: 'Login' })
     }
 
+    const fetchInfo = async () => {
+        try {
+            const res = await axios.get('/api/info')
+            console.log(res)
+        } catch (error) {
+            console.log(error)
+        }
+    }
+
     return {
         login,
-        logout
+        logout,
+        fetchInfo
     }
 })

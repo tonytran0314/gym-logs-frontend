@@ -13,6 +13,10 @@
     <form @submit.prevent="auth.logout">
         <button type="submit">Log out</button>
     </form>
+    
+    <form @submit.prevent="auth.fetchInfo">
+        <button type="submit">Fetch Info</button>
+    </form>
 </template>
 
 <style>
