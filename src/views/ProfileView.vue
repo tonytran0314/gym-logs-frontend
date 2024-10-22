@@ -1,6 +1,6 @@
 <script setup>
     import { useAuthStore } from '@/stores/authStore'
-    import SpinnerButton from '@/components/SpinnerButton.vue'
+    import SpinnerButton from '@/components/form/SpinnerButton.vue'
 
     const auth = useAuthStore()
 </script>
