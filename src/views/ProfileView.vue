@@ -1,6 +1,7 @@
 <script setup>
     import { useAuthStore } from '@/stores/authStore'
-    import SpinnerButton from '@/components/form/SpinnerButton.vue'
+    import LoadingButton from '@/components/form/LoadingButton.vue'
+    import Button from '@/components/form/Button.vue'
 
     const auth = useAuthStore()
 </script>
@@ -13,7 +14,8 @@
     
     <div class="p-8">
         <form @submit.prevent="auth.logout">
-            <SpinnerButton label="Đăng xuất" />
+            <LoadingButton v-if="auth.isLoading" />
+            <Button v-else>Đăng xuất</Button>
         </form>
 
         <br>

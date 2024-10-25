@@ -6,48 +6,78 @@ import axios from '@/services/axios.js'
 
 export const useAuthStore = defineStore('authStore', () => {
 
+    /* -------------------------------------------------------------------------- */
+    /*                                   STATES                                   */
+    /* -------------------------------------------------------------------------- */
     const router = useRouter()
     const toast = useToast()
 
     const errors = ref(null)
     const isLoading = ref(false)
 
+
+
+    /* -------------------------------------------------------------------------- */
+    /*                                   METHODS                                  */
+    /* -------------------------------------------------------------------------- */
     const login = async (email, password) => {
         try {
-
-            isLoading.value = true
+            startLoading()
 
             await axios.get('/sanctum/csrf-cookie')
-
             const response = await axios.post('/api/login', { email, password })
 
             if (response.status === 200) {
+                clearError()
                 goToProfilePage()
+                stopLoading()
             } 
         } 
         catch (error) {
-
-            isLoading.value = false
-
-            errors.value = error.response.data.message
+            stopLoading()
+            assignError(error.response.data.message)
         }
     }
 
     const logout = async () => {
         try {
+            startLoading()
+            
             await axios.post('/api/logout')
             goToLoginPage()
+
+            stopLoading()
         } catch (error) {
-            console.log(error)
+            stopLoading()
         }
     }
 
+
+    /* -------------------------------------------------------------------------- */
+    /*                                LOCAL METHODS                               */
+    /* -------------------------------------------------------------------------- */
     const goToProfilePage = () => {
         router.push({ name: 'Profile' })
     }
 
     const goToLoginPage = () => {
         router.push({ name: 'Login' })
+    }
+
+    const startLoading = () => {
+        isLoading.value = true
+    }
+
+    const stopLoading = () => {
+        isLoading.value = false
+    }
+
+    const assignError = (errorMessage) => {
+        errors.value = errorMessage
+    }
+
+    const clearError = () => {
+        errors.value = null
     }
 
     const fetchInfo = async () => {
@@ -60,6 +90,10 @@ export const useAuthStore = defineStore('authStore', () => {
         }
     }
 
+
+    /* -------------------------------------------------------------------------- */
+    /*                                   RETURN                                   */
+    /* -------------------------------------------------------------------------- */
     return {
         errors,
         isLoading,
