@@ -1,8 +1,9 @@
 <script setup>
     import { ref } from 'vue'
     import { useAuthStore } from '@/stores/authStore'
-    import SpinnerButton from '@/components/form/SpinnerButton.vue'
-    import Input from '@/components/form/Input.vue';
+    import LoadingButton from '@/components/form/LoadingButton.vue'
+    import Input from '@/components/form/Input.vue'
+    import Button from '@/components/form/Button.vue'
 
     const email = ref(null)
     const password = ref(null)
@@ -31,8 +32,13 @@
                 type="password"
                 name="password"
                 placeholder="••••••••" />
+
+            <div v-show="auth.errors" class="p-4 mb-4 font-medium text-sm text-red-800 rounded-lg bg-red-50 dark:bg-gray-800 dark:text-red-400">
+                {{ auth.errors }}
+            </div>
             
-            <SpinnerButton label="Đăng nhập" />
+            <LoadingButton v-if="auth.isLoading" />
+            <Button v-else >Đăng nhập</Button>
 
             <p class="text-sm font-light text-gray-500">
                 Bạn chưa có tài khoản? 
