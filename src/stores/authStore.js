@@ -1,10 +1,12 @@
 import { defineStore } from 'pinia'
 import { useRouter } from 'vue-router'
+import { useToast } from "vue-toastification"
 import axios from '@/services/axios.js'
 
 export const useAuthStore = defineStore('authStore', () => {
 
     const router = useRouter()
+    const toast = useToast()
 
     const login = async (email, password) => {
         try {
@@ -42,6 +44,7 @@ export const useAuthStore = defineStore('authStore', () => {
         try {
             const res = await axios.get('/api/info')
             console.log(res)
+            toast.success('Correct');
         } catch (error) {
             console.log(error)
         }
