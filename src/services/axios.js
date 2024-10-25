@@ -1,10 +1,13 @@
 import axios from 'axios';
 
-const axiosInstance = axios.create({
-  baseURL: import.meta.env.VITE_API_BASE_URL,
-  timeout: 10000,
+export const api = axios.create({
+  baseURL: import.meta.env.VITE_API_URL,
   withCredentials: true,
   withXSRFToken: true
-});
+})
 
-export default axiosInstance;
+export const csrf = axios.create({
+  baseURL: import.meta.env.VITE_CSRF_URL,
+  withCredentials: true,
+  withXSRFToken: true
+})

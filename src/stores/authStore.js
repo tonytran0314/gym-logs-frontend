@@ -2,7 +2,7 @@ import { defineStore } from 'pinia'
 import { useRouter } from 'vue-router'
 import { useToast } from "vue-toastification"
 import { ref } from 'vue'
-import axios from '@/services/axios.js'
+import { api, csrf} from '@/services/axios.js'
 
 export const useAuthStore = defineStore('authStore', () => {
 
@@ -24,8 +24,8 @@ export const useAuthStore = defineStore('authStore', () => {
         try {
             startLoading()
 
-            await axios.get('/sanctum/csrf-cookie')
-            const response = await axios.post('/api/login', { email, password })
+            await csrf.get()
+            const response = await api.post('/login', { email, password })
 
             if (response.status === 200) {
                 clearError()
@@ -43,7 +43,7 @@ export const useAuthStore = defineStore('authStore', () => {
         try {
             startLoading()
             
-            await axios.post('/api/logout')
+            await api.post('/logout')
             goToLoginPage()
 
             stopLoading()
@@ -82,7 +82,7 @@ export const useAuthStore = defineStore('authStore', () => {
 
     const fetchInfo = async () => {
         try {
-            const res = await axios.get('/api/info')
+            const res = await api.get('/info')
             console.log(res)
             toast.success('Correct');
         } catch (error) {
