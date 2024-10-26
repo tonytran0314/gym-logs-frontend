@@ -4,6 +4,7 @@
     import LoadingButton from '@/components/form/LoadingButton.vue'
     import Input from '@/components/form/Input.vue'
     import Button from '@/components/form/Button.vue'
+    import Error from '@/components/form/Error.vue'
 
     const email = ref(null)
     const password = ref(null)
@@ -25,6 +26,7 @@
                 type="email"
                 name="email"
                 placeholder="name@mail.com" />
+            <Error v-show="auth.errors.email">{{ auth.errors.email }}</Error>
             
             <Input
                 v-model="password"
@@ -32,10 +34,11 @@
                 type="password"
                 name="password"
                 placeholder="••••••••" />
+            <Error v-show="auth.errors.password">{{ auth.errors.password }}</Error>
 
-            <div v-show="auth.errors" class="p-4 mb-4 font-medium text-sm text-red-800 rounded-lg bg-red-50 dark:bg-gray-800 dark:text-red-400">
-                {{ auth.errors }}
-            </div>
+
+            <Error v-show="auth.errors.message">{{ auth.errors.message }}</Error>
+
             
             <LoadingButton v-if="auth.isLoading" />
             <Button v-else >Đăng nhập</Button>

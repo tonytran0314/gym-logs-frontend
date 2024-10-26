@@ -1,7 +1,7 @@
 import { defineStore } from 'pinia'
 import { useRouter } from 'vue-router'
 import { useToast } from "vue-toastification"
-import { ref } from 'vue'
+import { ref, reactive } from 'vue'
 import { api, csrf} from '@/services/axios.js'
 
 export const useAuthStore = defineStore('authStore', () => {
@@ -12,7 +12,11 @@ export const useAuthStore = defineStore('authStore', () => {
     const router = useRouter()
     const toast = useToast()
 
-    const errors = ref(null)
+    const errors = reactive({
+        email: null,
+        password: null,
+        message: null
+    })
     const isLoading = ref(false)
 
 
@@ -35,7 +39,7 @@ export const useAuthStore = defineStore('authStore', () => {
         } 
         catch (error) {
             stopLoading()
-            assignError(error.response.data.message)
+            assignError(error.response.data)
         }
     }
 
@@ -51,6 +55,7 @@ export const useAuthStore = defineStore('authStore', () => {
             stopLoading()
         }
     }
+
 
 
     /* -------------------------------------------------------------------------- */
@@ -72,12 +77,22 @@ export const useAuthStore = defineStore('authStore', () => {
         isLoading.value = false
     }
 
-    const assignError = (errorMessage) => {
-        errors.value = errorMessage
+    const assignError = (response) => {
+        clearError()
+
+        if(!response.errors) { 
+            errors.message = response.message 
+            return
+        }
+
+        errors.email = response.errors.email ? response.errors.email[0] : null
+        errors.password = response.errors.password ? response.errors.password[0] : null
     }
 
     const clearError = () => {
-        errors.value = null
+        errors.email = null
+        errors.password = null
+        errors.message = null
     }
 
     const fetchInfo = async () => {
@@ -89,6 +104,7 @@ export const useAuthStore = defineStore('authStore', () => {
             console.log(error)
         }
     }
+
 
 
     /* -------------------------------------------------------------------------- */
