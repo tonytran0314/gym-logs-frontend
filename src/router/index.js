@@ -1,4 +1,5 @@
 import { createWebHistory, createRouter } from 'vue-router'
+import { api } from '@/services/axios.js'
 
 const routes = [
   { 
@@ -15,6 +16,16 @@ const routes = [
     path: '/login', 
     name: 'Login',
     component: () => import('@/views/AuthView.vue'),
+    beforeEnter: async (to, from, next) => {
+      try {
+        const res = await api.get('/is-authenticated')
+        
+        if(res.data.isAuthenticated) { next({ name: 'Profile' }) } 
+        else { next() }
+      } catch (error) {
+        console.log(error)
+      }
+    }
   },
   { 
     path: '/profile', 

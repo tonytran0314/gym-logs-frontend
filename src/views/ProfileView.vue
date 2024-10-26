@@ -7,10 +7,10 @@
 </script>
 
 <template>
-    <!-- <div>
+    <div>
         <router-link to="/login" class="text-3xl">Login</router-link>
         <router-link to="/signup" class="text-3xl">Signup</router-link>
-    </div> -->
+    </div>
     
     <div class="p-8">
         <form @submit.prevent="auth.logout">
