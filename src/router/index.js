@@ -11,6 +11,16 @@ const routes = [
     path: '/signup', 
     name: 'Signup',
     component: () => import('@/views/AuthView.vue'),
+    beforeEnter: async (to, from, next) => {
+      try {
+        const res = await api.get('/is-authenticated')
+        
+        if(res.data.isAuthenticated) { next({ name: 'Profile' }) } 
+        else { next() }
+      } catch (error) {
+        console.log(error) 
+      }
+    }
   },
   { 
     path: '/login', 
@@ -23,7 +33,7 @@ const routes = [
         if(res.data.isAuthenticated) { next({ name: 'Profile' }) } 
         else { next() }
       } catch (error) {
-        console.log(error)
+        console.log(error) 
       }
     }
   },
