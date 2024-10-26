@@ -1,27 +1,68 @@
 <script setup>
-    
+    import { useAuthStore } from '@/stores/authStore'
+    import { reactive } from 'vue'
+    import LoadingButton from '@/components/form/LoadingButton.vue'
+    import Input from '@/components/form/Input.vue'
+    import Button from '@/components/form/Button.vue'
+    import Error from '@/components/form/Error.vue'
+
+    const auth = useAuthStore()
+
+    const form = reactive({
+        name: null,
+        email: null,
+        password: null,
+        password_confirmation: null
+    })
+
+    const signupHandle = () => {
+        auth.signup(form)
+    }
 </script>
 
 <template>
     <div class="space-y-4 md:space-y-6">
-        <h1 class="text-xl font-bold leading-tight tracking-tight text-gray-900 md:text-2xl">Tạo tài khoản</h1>
-        <form class="space-y-4 md:space-y-6">
-            <div>
-                <label for="email" class="block mb-2 text-sm font-medium text-gray-900">Email</label>
-                <input type="email" name="email" id="email" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:outline-none focus:ring-1 focus:ring-emerald-600 focus:border-emerald-600 block w-full p-2.5" placeholder="name@mail.com" required="">
-            </div>
-            <div>
-                <label for="password" class="block mb-2 text-sm font-medium text-gray-900">Mật khẩu</label>
-                <input type="password" name="password" id="password" placeholder="••••••••" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:outline-none focus:ring-1 focus:ring-emerald-600 focus:border-emerald-600 block w-full p-2.5" required="">
-            </div>
-            <div>
-                <label for="confirm-password" class="block mb-2 text-sm font-medium text-gray-900">Nhập lại mật khẩu</label>
-                <input type="password" name="confirm-password" id="confirm-password" placeholder="••••••••" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:outline-none focus:ring-1 focus:ring-emerald-600 focus:border-emerald-600 block w-full p-2.5" required="">
-            </div>
-            <button type="submit" class="w-full text-white bg-emerald-600 hover:bg-emerald-700 focus:ring-4 focus:outline-none focus:ring-emerald-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center">Tạo tài khoản</button>
+        <h1 class="text-xl font-bold leading-tight tracking-tight text-gray-900 md:text-2xl">Create Account</h1>
+        <form @submit.prevent="signupHandle" class="space-y-4 md:space-y-6">
+            <Input
+                v-model="form.name"
+                label="Fullname"
+                type="text"
+                name="name"
+                placeholder="Your name" />
+            <Error v-show="auth.errors.name">{{ auth.errors.name }}</Error>
+
+            <Input
+                v-model="form.email"
+                label="Email"
+                type="email"
+                name="email"
+                placeholder="name@mail.com" />
+            <Error v-show="auth.errors.email">{{ auth.errors.email }}</Error>
+            
+            <Input
+                v-model="form.password"
+                label="Password"
+                type="password"
+                name="password"
+                placeholder="••••••••" />
+            <Error v-show="auth.errors.password">{{ auth.errors.password }}</Error>
+
+            <Input
+                v-model="form.password_confirmation"
+                label="Confirm Password"
+                type="password"
+                name="confirm-password"
+                placeholder="••••••••" />
+
+            
+            <LoadingButton v-if="auth.isLoading" />
+            <Button v-else >Create Account</Button>
+
+
             <p class="text-sm font-light text-gray-500">
                 Bạn đã có tài khoản? 
-                <router-link to="/login" class="font-medium text-primary-600 hover:underline dark:text-primary-500">Đăng nhập ở đây</router-link>
+                <router-link to="/login" class="font-medium text-primary-600 hover:underline dark:text-primary-500">Login Here</router-link>
             </p>
         </form>
     </div>

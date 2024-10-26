@@ -13,6 +13,7 @@ export const useAuthStore = defineStore('authStore', () => {
     const toast = useToast()
 
     const errors = reactive({
+        name: null,
         email: null,
         password: null,
         message: null
@@ -56,6 +57,24 @@ export const useAuthStore = defineStore('authStore', () => {
         }
     }
 
+    const signup = async (form) => {
+        try {
+            startLoading()
+            
+            await api.post('/signup', form)
+
+            clearError()
+            goToLoginPage()
+
+            signupSuccessNotification()
+
+            stopLoading()
+        } catch (error) {
+            stopLoading()
+            assignError(error.response.data)
+        }
+    }
+
 
 
     /* -------------------------------------------------------------------------- */
@@ -85,14 +104,20 @@ export const useAuthStore = defineStore('authStore', () => {
             return
         }
 
+        errors.name = response.errors.name ? response.errors.name[0] : null
         errors.email = response.errors.email ? response.errors.email[0] : null
         errors.password = response.errors.password ? response.errors.password[0] : null
     }
 
     const clearError = () => {
+        errors.name = null
         errors.email = null
         errors.password = null
         errors.message = null
+    }
+
+    const signupSuccessNotification = () => {
+        toast.success('Signup Successfully! You can Login now')
     }
 
     const fetchInfo = async () => {
@@ -115,6 +140,7 @@ export const useAuthStore = defineStore('authStore', () => {
         isLoading,
         login,
         logout,
+        signup,
         fetchInfo
     }
 })
