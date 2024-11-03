@@ -42,6 +42,11 @@ const routes = [
     name: 'Profile',
     component: () => import('@/views/ProfileView.vue'),
   },
+  { 
+    path: '/onset', 
+    name: 'On Set Screen',
+    component: () => import('@/views/OnSetView.vue'),
+  },
 ]
 
 const router = createRouter({

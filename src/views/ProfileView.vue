@@ -4,13 +4,13 @@
     
     import LoadingButton from '@/components/form/LoadingButton.vue'
     import Button from '@/components/form/Button.vue'
-    import TestModal from '@/components/modals/TestModal.vue'
+    import StartExerciseModal from '@/components/modals/StartExerciseModal.vue'
 
     const auth = useAuthStore()
     const modal = useModalStore()
 
     const startExerciseDay = () => {
-        modal.open(TestModal)
+        modal.open(StartExerciseModal)
     }
 </script>
 
