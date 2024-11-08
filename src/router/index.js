@@ -47,6 +47,11 @@ const routes = [
     name: 'On Set Screen',
     component: () => import('@/views/OnSetView.vue'),
   },
+  { 
+    path: '/rest', 
+    name: 'Rest Screen',
+    component: () => import('@/views/RestView.vue'),
+  },
 ]
 
 const router = createRouter({
