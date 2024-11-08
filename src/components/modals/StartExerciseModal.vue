@@ -34,10 +34,10 @@
 
       <h3 class="text-3xl font-bold">Choose your exercises for today</h3>
       
-      <form @submit.prevent="" class="flex space-x-8">
+      <form @submit.prevent="startExercise" class="flex space-x-8">
 
         <div class="flex flex-col">
-          <select @change="selectMuscle" v-model="exerciseRecord.muscle" class="border" id="muscle">
+          <select @change="selectMuscle" v-model="exerciseRecord.muscle" class="border" id="muscle" required>
             <option value="" disabled selected>Choose the muscle</option>
             <option value="abdominals">abdominals</option>
             <option value="abductors">abductors</option>
@@ -59,13 +59,13 @@
         </div>
 
         <div class="flex flex-col">
-          <select v-model="exerciseRecord.exercise" class="border" id="exercise">
+          <select v-model="exerciseRecord.exercise" class="border" id="exercise" required>
             <option value="" disabled selected>Choose the exercise</option>
             <option v-for="exercise in exercises" :value="exercise.name">{{ exercise.name }}</option>
           </select>
         </div>
 
-        <Button @click="startExercise">Start</Button>
+        <Button>Start</Button>
 
       </form>
     </div>

@@ -46,11 +46,31 @@ const routes = [
     path: '/onset', 
     name: 'On Set Screen',
     component: () => import('@/views/OnSetView.vue'),
+    beforeEnter: async (to, from, next) => {
+      try {
+        const res = await api.get('/is-workingout')
+        
+        if(res.data.isWorkingout) { next() } 
+        else { next({ name: 'Profile' }) }
+      } catch (error) {
+        console.log(error) 
+      }
+    }
   },
   { 
     path: '/rest', 
     name: 'Rest Screen',
     component: () => import('@/views/RestView.vue'),
+    beforeEnter: async (to, from, next) => {
+      try {
+        const res = await api.get('/is-workingout')
+        
+        if(res.data.isWorkingout) { next() } 
+        else { next({ name: 'Profile' }) }
+      } catch (error) {
+        console.log(error) 
+      }
+    }
   },
 ]
 

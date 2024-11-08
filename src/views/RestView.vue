@@ -2,11 +2,13 @@
     import Button from '@/components/form/Button.vue'
 
     import { useRouter } from 'vue-router'
+    import { useExerciseStore } from '@/stores/exerciseStore'
     
     const router = useRouter()
+    const exercise = useExerciseStore()
 
     const stopExercise = () => {
-        router.push({ name: 'Profile' })
+        exercise.stopExercise()
     }
 
     const gotoNextSet = () => {

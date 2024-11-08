@@ -1,6 +1,6 @@
 import { defineStore } from "pinia"
 import { ref } from "vue"
-import { exerciseApi } from "@/services/axios"
+import { api, exerciseApi } from "@/services/axios"
 import { useRouter } from 'vue-router'
 
 export const useExerciseStore = defineStore('exerciseStore', () => {
@@ -23,9 +23,24 @@ export const useExerciseStore = defineStore('exerciseStore', () => {
         }
     }
 
-    const startExercise = (record) => {
+    const startExercise = async (record) => {
         tempStore(record)
+        await enableWorkoutStatus()
         goToOnSetScreen()
+    }
+
+    const stopExercise = async () => {
+        await disableWorkoutStatus()
+        goToProfile()
+    }
+
+    const saveWorkoutSet = async (set) => {
+        try {
+            await api.post('/save-set', set)
+        } catch (error) {
+            console.log(error)
+        }
+        
     }
 
 
@@ -36,11 +51,30 @@ export const useExerciseStore = defineStore('exerciseStore', () => {
         router.push({ name: 'On Set Screen' })
     }
 
+    const goToProfile = () => {
+        router.push({ name: 'Profile' })
+    }
+
     const tempStore = (record) => {
         localStorage.setItem('muscle', record.muscle)
         localStorage.setItem('exercise', record.exercise)
     }
 
+    const enableWorkoutStatus = async () => {
+        try {
+            await api.put('/start-workout')
+        } catch (error) {
+            console.log(error)
+        }
+    }
+
+    const disableWorkoutStatus = async () => {
+        try {
+            await api.put('/stop-workout')
+        } catch (error) {
+            console.log(error)
+        }
+    }
 
     /* -------------------------------------------------------------------------- */
     /*                                   RETURN                                   */
@@ -48,7 +82,9 @@ export const useExerciseStore = defineStore('exerciseStore', () => {
     return {
         exercises,
         getExercises,
-        startExercise
+        startExercise,
+        stopExercise,
+        saveWorkoutSet
     }
 
 })
