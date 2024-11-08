@@ -1,35 +1,48 @@
 <script setup>
     import { useProfileStore } from '@/stores/profileStore'
-    
+    import { reactive } from 'vue'
+
     import Input from '@/components/form/Input.vue'
+    import Button from '@/components/form/Button.vue'
+    import LoadingButton from '@/components/form/LoadingButton.vue'
+    import Error from '@/components/form/Error.vue'
 
     const profile = useProfileStore()
+
+    const updateProfile = () => {
+        const updatedProfile = reactive({
+            name: profile.user.fullname,
+            email: profile.user.email
+        })
+        
+        profile.edit(updatedProfile)
+    }
 
     await profile.get()
 </script>
 
 <template>
-    <div>
+    <div class="space-y-8">
         <h1 class="text-5xl">This is Profile View</h1>
 
-        <p>{{ profile.user.fullname }}</p>
-        <p>{{ profile.user.email }}</p>
-
-        <form @submit.prevent="" class="space-y-8">
-            <!-- <Input
-                v-model="fullname"
+        <form @submit.prevent="updateProfile" class="space-y-8">
+            <Input
+                v-model="profile.user.fullname"
                 label="Fullname"
                 type="text"
                 name="fullname"
                 placeholder="Your full name" />
-            <Error v-show="auth.errors.email">{{ auth.errors.email }}</Error>
+            <Error v-show="profile.errors.fullname">{{ profile.errors.fullname }}</Error>
             <Input
-                v-model="email"
+                v-model="profile.user.email"
                 label="Email"
                 type="email"
                 name="email"
                 placeholder="name@mail.com" />
-            <Error v-show="auth.errors.email">{{ auth.errors.email }}</Error> -->
+            <Error v-show="profile.errors.email">{{ profile.errors.email }}</Error>
+            
+            <LoadingButton v-if="profile.isLoading" />
+            <Button v-else >Update Profile</Button>
         </form>
     </div>
 </template>
