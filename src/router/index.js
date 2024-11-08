@@ -4,8 +4,33 @@ import { api } from '@/services/axios.js'
 const routes = [
   { 
     path: '/', 
+    name: 'Guess',
+    component: () => import('@/views/GuessView.vue'),
+    beforeEnter: async (to, from, next) => {
+      try {
+        const res = await api.get('/is-authenticated')
+        
+        if(res.data.isAuthenticated) { next({ name: 'Home' }) } 
+        else { next() }
+      } catch (error) {
+        console.log(error) 
+      }
+    }
+  },
+  { 
+    path: '/home', 
     name: 'Home',
-    component: () => import('@/views/TestView.vue'),
+    component: () => import('@/views/HomeView.vue'),
+    beforeEnter: async (to, from, next) => {
+      try {
+        const res = await api.get('/is-authenticated')
+        
+        if(res.data.isAuthenticated) { next() } 
+        else { next({ name: 'Login' }) }
+      } catch (error) {
+        console.log(error) 
+      }
+    }
   },
   { 
     path: '/signup', 
@@ -15,7 +40,7 @@ const routes = [
       try {
         const res = await api.get('/is-authenticated')
         
-        if(res.data.isAuthenticated) { next({ name: 'Profile' }) } 
+        if(res.data.isAuthenticated) { next({ name: 'Home' }) } 
         else { next() }
       } catch (error) {
         console.log(error) 
@@ -30,7 +55,7 @@ const routes = [
       try {
         const res = await api.get('/is-authenticated')
         
-        if(res.data.isAuthenticated) { next({ name: 'Profile' }) } 
+        if(res.data.isAuthenticated) { next({ name: 'Home' }) } 
         else { next() }
       } catch (error) {
         console.log(error) 
@@ -41,6 +66,16 @@ const routes = [
     path: '/profile', 
     name: 'Profile',
     component: () => import('@/views/ProfileView.vue'),
+    beforeEnter: async (to, from, next) => {
+      try {
+        const res = await api.get('/is-authenticated')
+        
+        if(res.data.isAuthenticated) { next() } 
+        else { next({ name: 'Login' }) }
+      } catch (error) {
+        console.log(error) 
+      }
+    }
   },
   { 
     path: '/onset', 
@@ -51,7 +86,7 @@ const routes = [
         const res = await api.get('/is-workingout')
         
         if(res.data.isWorkingout) { next() } 
-        else { next({ name: 'Profile' }) }
+        else { next({ name: 'Home' }) }
       } catch (error) {
         console.log(error) 
       }
@@ -66,7 +101,7 @@ const routes = [
         const res = await api.get('/is-workingout')
         
         if(res.data.isWorkingout) { next() } 
-        else { next({ name: 'Profile' }) }
+        else { next({ name: 'Home' }) }
       } catch (error) {
         console.log(error) 
       }

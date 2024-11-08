@@ -31,7 +31,7 @@ export const useExerciseStore = defineStore('exerciseStore', () => {
 
     const stopExercise = async () => {
         await disableWorkoutStatus()
-        goToProfile()
+        goToHomePage()
     }
 
     const saveWorkoutSet = async (set) => {
@@ -51,8 +51,8 @@ export const useExerciseStore = defineStore('exerciseStore', () => {
         router.push({ name: 'On Set Screen' })
     }
 
-    const goToProfile = () => {
-        router.push({ name: 'Profile' })
+    const goToHomePage = () => {
+        router.push({ name: 'Home' })
     }
 
     const tempStore = (record) => {

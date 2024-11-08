@@ -34,7 +34,7 @@ export const useAuthStore = defineStore('authStore', () => {
 
             if (response.status === 200) {
                 clearError()
-                goToProfilePage()
+                goToHomePage()
                 stopLoading()
             } 
         } 
@@ -80,8 +80,8 @@ export const useAuthStore = defineStore('authStore', () => {
     /* -------------------------------------------------------------------------- */
     /*                                LOCAL METHODS                               */
     /* -------------------------------------------------------------------------- */
-    const goToProfilePage = () => {
-        router.push({ name: 'Profile' })
+    const goToHomePage = () => {
+        router.push({ name: 'Home' })
     }
 
     const goToLoginPage = () => {
