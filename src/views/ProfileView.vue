@@ -5,6 +5,7 @@
     import LoadingButton from '@/components/form/LoadingButton.vue'
     import Button from '@/components/form/Button.vue'
     import StartExerciseModal from '@/components/modals/StartExerciseModal.vue'
+    import Quote from '@/components/Quote.vue'
 
     const auth = useAuthStore()
     const modal = useModalStore()
@@ -16,11 +17,15 @@
 
 <template>
     <div class="p-8 space-y-8">
-        <div class="space-x-8">
-            <router-link to="/login" class="text-3xl">Login</router-link>
-            <router-link to="/signup" class="text-3xl">Signup</router-link>
-        </div>
-    
+
+        <Suspense>
+            <Quote />
+
+            <template #fallback>
+                Loading quote...
+            </template>
+        </Suspense>
+
         <form @submit.prevent="auth.logout">
             <LoadingButton v-if="auth.isLoading" />
             <Button v-else>Đăng xuất</Button>
