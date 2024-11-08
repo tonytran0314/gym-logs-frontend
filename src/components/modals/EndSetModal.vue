@@ -29,7 +29,7 @@
   const setRestTimeEnd = () => {
     // 1 minute 30 seconds
     now.setMinutes(now.getMinutes() + 1)
-    now.setSeconds(now.getSeconds() + 30)
+    now.setSeconds(now.getSeconds() + 36)
     localStorage.setItem('end_rest_at', now.toISOString())
   }
 </script>
