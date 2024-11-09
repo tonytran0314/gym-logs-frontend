@@ -1,5 +1,5 @@
 <script setup>    
-    import UserProfile from '@/components/UserProfile.vue'
+    import UserProfile from '@/components/profile/UserProfile.vue'
 </script>
 
 <template>

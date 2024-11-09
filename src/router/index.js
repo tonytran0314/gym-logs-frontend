@@ -2,10 +2,9 @@ import { createWebHistory, createRouter } from 'vue-router'
 import { api } from '@/services/axios.js'
 
 const routes = [
-  { 
-    path: '/', 
-    name: 'Home',
-    component: () => import('@/views/HomeView.vue'),
+  {
+    path: '/',
+    component: () => import('@/views/MainView.vue'),
     beforeEnter: async (to, from, next) => {
       try {
         const res = await api.get('/is-authenticated')
@@ -15,7 +14,19 @@ const routes = [
       } catch (error) {
         console.log(error) 
       }
-    }
+    },
+    children: [
+      {
+        path: '',
+        name: 'Home',
+        component: () => import('@/components/dashboard/Container.vue'),
+      },
+      {
+        path: 'profile',
+        name: 'Profile',
+        component: () => import('@/components/profile/Container.vue'),
+      },
+    ],
   },
   { 
     path: '/signup', 
@@ -42,21 +53,6 @@ const routes = [
         
         if(res.data.isAuthenticated) { next({ name: 'Home' }) } 
         else { next() }
-      } catch (error) {
-        console.log(error) 
-      }
-    }
-  },
-  { 
-    path: '/profile', 
-    name: 'Profile',
-    component: () => import('@/views/ProfileView.vue'),
-    beforeEnter: async (to, from, next) => {
-      try {
-        const res = await api.get('/is-authenticated')
-        
-        if(res.data.isAuthenticated) { next() } 
-        else { next({ name: 'Login' }) }
       } catch (error) {
         console.log(error) 
       }

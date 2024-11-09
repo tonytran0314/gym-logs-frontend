@@ -17,8 +17,7 @@
 </script>
 
 <template>
-    <div class="p-8 space-y-8">
-
+    <div>
         <div class="space-y-8">
             <p class="text-5xl">This is Home View</p>
             <router-link :to="{ name: 'Profile' }" class="text-blue">Profile</router-link>
