@@ -4,21 +4,6 @@ import { api } from '@/services/axios.js'
 const routes = [
   { 
     path: '/', 
-    name: 'Guess',
-    component: () => import('@/views/GuessView.vue'),
-    beforeEnter: async (to, from, next) => {
-      try {
-        const res = await api.get('/is-authenticated')
-        
-        if(res.data.isAuthenticated) { next({ name: 'Home' }) } 
-        else { next() }
-      } catch (error) {
-        console.log(error) 
-      }
-    }
-  },
-  { 
-    path: '/home', 
     name: 'Home',
     component: () => import('@/views/HomeView.vue'),
     beforeEnter: async (to, from, next) => {
