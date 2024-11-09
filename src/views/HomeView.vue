@@ -6,6 +6,7 @@
     import Button from '@/components/form/Button.vue'
     import StartExerciseModal from '@/components/modals/StartExerciseModal.vue'
     import Quote from '@/components/Quote.vue'
+    import TestChart from '@/components/charts/TestChart.vue'
 
     const auth = useAuthStore()
     const modal = useModalStore()
@@ -40,6 +41,8 @@
         <form @submit.prevent="auth.fetchInfo">
             <button type="submit">Fetch Info</button>
         </form>
+
+        <TestChart />
     </div>
 </template>
 
