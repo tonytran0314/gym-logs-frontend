@@ -2,6 +2,10 @@ import { createWebHistory, createRouter } from 'vue-router'
 import { api } from '@/services/axios.js'
 
 const routes = [
+
+  /* -------------------------------------------------------------------------- */
+  /*                                  MAIN VIEW                                 */
+  /* -------------------------------------------------------------------------- */
   {
     path: '/',
     component: () => import('@/views/MainView.vue'),
@@ -28,9 +32,35 @@ const routes = [
       },
     ],
   },
+  
+
+
+  /* -------------------------------------------------------------------------- */
+  /*                             AUTHENTICATION VIEW                            */
+  /* -------------------------------------------------------------------------- */
+  {
+    path: '/login',
+    component: () => import('@/views/AuthView.vue'),
+    beforeEnter: async (to, from, next) => {
+      try {
+        const res = await api.get('/is-authenticated')
+        
+        if(res.data.isAuthenticated) { next({ name: 'Home' }) } 
+        else { next() }
+      } catch (error) {
+        console.log(error) 
+      }
+    },
+    children: [
+      {
+        path: '',
+        name: 'Login',
+        component: () => import('@/components/auth/LoginForm.vue'),
+      }
+    ],
+  },
   { 
     path: '/signup', 
-    name: 'Signup',
     component: () => import('@/views/AuthView.vue'),
     beforeEnter: async (to, from, next) => {
       try {
@@ -41,23 +71,19 @@ const routes = [
       } catch (error) {
         console.log(error) 
       }
-    }
-  },
-  { 
-    path: '/login', 
-    name: 'Login',
-    component: () => import('@/views/AuthView.vue'),
-    beforeEnter: async (to, from, next) => {
-      try {
-        const res = await api.get('/is-authenticated')
-        
-        if(res.data.isAuthenticated) { next({ name: 'Home' }) } 
-        else { next() }
-      } catch (error) {
-        console.log(error) 
+    },
+    children: [
+      {
+        path: '',
+        name: 'Signup',
+        component: () => import('@/components/auth/SignupForm.vue'),
       }
-    }
+    ],
   },
+
+
+
+  
   { 
     path: '/onset', 
     name: 'On Set Screen',
