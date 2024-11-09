@@ -5,7 +5,7 @@
     import LoadingButton from '@/components/form/LoadingButton.vue'
     import Button from '@/components/form/Button.vue'
     import StartExerciseModal from '@/components/modals/StartExerciseModal.vue'
-    import Quote from '@/components/Quote.vue'
+    import Quote from '@/components/dashboard/Quote.vue'
     import TestChart from '@/components/charts/TestChart.vue'
 
     const auth = useAuthStore()

@@ -83,11 +83,12 @@ const routes = [
 
 
 
-  
-  { 
-    path: '/onset', 
-    name: 'On Set Screen',
-    component: () => import('@/views/OnSetView.vue'),
+  /* -------------------------------------------------------------------------- */
+  /*                                WORKOUT VIEW                                */
+  /* -------------------------------------------------------------------------- */
+  {
+    path: '/workout',
+    component: () => import('@/views/WorkoutView.vue'),
     beforeEnter: async (to, from, next) => {
       try {
         const res = await api.get('/is-workingout')
@@ -97,24 +98,23 @@ const routes = [
       } catch (error) {
         console.log(error) 
       }
-    }
-  },
-  { 
-    path: '/rest', 
-    name: 'Rest Screen',
-    component: () => import('@/views/RestView.vue'),
-    beforeEnter: async (to, from, next) => {
-      try {
-        const res = await api.get('/is-workingout')
-        
-        if(res.data.isWorkingout) { next() } 
-        else { next({ name: 'Home' }) }
-      } catch (error) {
-        console.log(error) 
-      }
-    }
+    },
+    children: [
+      {
+        path: '',
+        name: 'On Set Screen',
+        component: () => import('@/components/workout/OnSet.vue'),
+      },
+      {
+        path: 'rest',
+        name: 'Rest Screen',
+        component: () => import('@/components/workout/Rest.vue'),
+      },
+    ],
   },
 ]
+
+
 
 const router = createRouter({
   history: createWebHistory(),
