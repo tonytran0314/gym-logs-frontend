@@ -23,7 +23,7 @@
 
 <template>
     <div class="space-y-8">
-        <h1 class="text-5xl">This is Profile View</h1>
+        <h1 class="text-5xl">Profile</h1>
 
         <form @submit.prevent="updateProfile" class="space-y-8">
             <Input

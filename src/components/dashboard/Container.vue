@@ -1,47 +1,40 @@
 <script setup>
-    import { useAuthStore } from '@/stores/authStore'
-    import { useModalStore } from '@/stores/modalStore'
-    
-    import LoadingButton from '@/components/form/LoadingButton.vue'
-    import Button from '@/components/form/Button.vue'
-    import StartExerciseModal from '@/components/modals/StartExerciseModal.vue'
     import Quote from '@/components/dashboard/Quote.vue'
     import TestChart from '@/components/charts/TestChart.vue'
-
-    const auth = useAuthStore()
-    const modal = useModalStore()
-
-    const startExerciseDay = () => {
-        modal.open(StartExerciseModal)
-    }
 </script>
 
 <template>
-    <div>
-        <div class="space-y-8">
-            <p class="text-5xl">This is Home View</p>
-            <router-link :to="{ name: 'Profile' }" class="text-blue">Profile</router-link>
+    <div class="space-y-6">
+
+    <!-- CHARTS -->
+    <!-- Nhìn chart cũng không aesthetic lắm, cân nhắc thay chart khác -->
+        <div class="flex gap-6 flex-wrap w-full">
+            <div class="flex-grow bg-white p-8 rounded-2xl">
+                <TestChart />
+            </div>
+            <div class="flex flex-col gap-6">
+                <div class="bg-white p-8 rounded-2xl">
+                    <TestChart />
+                </div>
+                <div class="bg-white p-8 rounded-2xl">
+                    <TestChart />
+                </div>
+            </div>
         </div>
-        <!-- <Suspense>
-            <Quote />
 
-            <template #fallback>
-                Loading quote...
-            </template>
-        </Suspense> -->
+    
 
-        <form @submit.prevent="auth.logout">
-            <LoadingButton v-if="auth.isLoading" />
-            <Button v-else>Đăng xuất</Button>
-        </form>
+    <!-- QUOTE -->
+        <div class="bg-white p-8 rounded-2xl">
+            <p>"I do a one-hour workout called Drenched, a cardio-boxing fitness routine, Monday through Friday. There are usually between twenty-five and fifty people there - everyone from stay-at-home moms and professional martial artists to teenagers and seniors. They play great dance music. When I can, I take two classes back-to-back." - Carrie Ann Inaba</p>
+            <!-- <Suspense>
+                <Quote />
 
-        <button @click="startExerciseDay" type="button" class="border py-4 px-8 bg-emerald-600 text-white rounded-lg">Workout now</button>
-
-        <form @submit.prevent="auth.fetchInfo">
-            <button type="submit">Fetch Info</button>
-        </form>
-
-        <TestChart />
+                <template #fallback>
+                    Loading quote...
+                </template>
+            </Suspense> -->
+        </div>
     </div>
 </template>
 

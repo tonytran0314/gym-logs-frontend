@@ -40,8 +40,8 @@
             <Error v-show="auth.errors.message">{{ auth.errors.message }}</Error>
 
             
-            <LoadingButton v-if="auth.isLoading" />
-            <Button v-else >Đăng nhập</Button>
+            <LoadingButton v-if="auth.isLoading" class="w-full" />
+            <Button v-else class="w-full">Đăng nhập</Button>
 
             <p class="text-sm font-light text-gray-500">
                 Bạn chưa có tài khoản? 

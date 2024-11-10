@@ -3,10 +3,7 @@
 </script>
 
 <template>
-    <div class="p-8 space-y-8 text-5xl">
-
-        <router-link :to="{ name: 'Home'}" class="text-blue">Home page</router-link>
-
+    <div class="bg-white p-8 rounded-2xl">
         <Suspense>
 
             <UserProfile />
@@ -15,6 +12,5 @@
                 Loading Profile ...
             </template>
         </Suspense>
-
     </div>
 </template>

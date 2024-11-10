@@ -56,8 +56,8 @@
                 placeholder="••••••••" />
 
             
-            <LoadingButton v-if="auth.isLoading" />
-            <Button v-else >Create Account</Button>
+            <LoadingButton v-if="auth.isLoading" class="w-full" />
+            <Button v-else class="w-full">Create Account</Button>
 
 
             <p class="text-sm font-light text-gray-500">
