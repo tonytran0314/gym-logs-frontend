@@ -50,11 +50,11 @@
 
 
     <!-- RIGHT COLUMN -->
-        <div class="bg-blue-50 flex-grow p-8 overflow-auto space-y-8">
-            <div class="flex justify-end">
+        <div class="flex-grow overflow-auto bg-blue-50">
+            <div class="flex justify-end bg-white pt-5 pb-5 pr-8">
                 <Button @click="startExerciseDay">Workout now</Button>
             </div>
-            <div>
+            <div class="p-8 bg-blue-50">
                 <router-view />
             </div>
         </div>

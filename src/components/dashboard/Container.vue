@@ -1,6 +1,8 @@
 <script setup>
     import Quote from '@/components/dashboard/Quote.vue'
-    import TestChart from '@/components/charts/TestChart.vue'
+    import BarChart from '@/components/charts/BarChart.vue'
+    import LineChart from '@/components/charts/LineChart.vue'
+    import PieChart from '@/components/charts/PieChart.vue'
 </script>
 
 <template>
@@ -10,14 +12,14 @@
     <!-- Nhìn chart cũng không aesthetic lắm, cân nhắc thay chart khác -->
         <div class="flex gap-6 flex-wrap w-full">
             <div class="flex-grow bg-white p-8 rounded-2xl">
-                <TestChart />
+                <LineChart />
             </div>
             <div class="flex flex-col gap-6">
                 <div class="bg-white p-8 rounded-2xl">
-                    <TestChart />
+                    <BarChart />
                 </div>
                 <div class="bg-white p-8 rounded-2xl">
-                    <TestChart />
+                    <PieChart />
                 </div>
             </div>
         </div>
@@ -37,7 +39,3 @@
         </div>
     </div>
 </template>
-
-<style>
-    
-</style>
