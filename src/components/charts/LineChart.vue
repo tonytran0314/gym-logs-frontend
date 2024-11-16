@@ -1,5 +1,6 @@
 <script setup>
-  import { Line } from 'vue-chartjs';
+  import { Line } from 'vue-chartjs'
+  import { useChartStore } from '@/stores/chartStore'
   import {
     Chart as ChartJS,
     Title,
@@ -13,12 +14,15 @@
   
   ChartJS.register(Title, Tooltip, Legend, LineElement, PointElement, CategoryScale, LinearScale);
   
+  const chart = useChartStore()
+  await chart.getLineData()
+  
   const chartData = {
-    labels: ['January', 'February', 'March', 'April', 'May', 'June'],
+    labels: chart.lineChartData.dates,
     datasets: [
       {
-        label: 'Sales',
-        data: [30, 50, 40, 60, 70, 80],
+        label: 'Weight',
+        data: chart.lineChartData.weight_levels,
         borderColor: 'rgba(75, 192, 192, 1)',
         backgroundColor: 'rgba(75, 192, 192, 0.2)',
         borderWidth: 2,
@@ -39,15 +43,7 @@
         display: false,
       },
       title: {
-        display: true,
-        text: 'Monthly Sales Data',
-        font: {
-          size: 20,
-          weight: 'bold',
-        },
-        padding: {
-          bottom: 20,
-        },
+        display: false,
       },
     },
     scales: {
@@ -81,8 +77,18 @@
 </script>
   
 <template>
-    <div class="chart-container">
+    <div class="chart-container flex flex-col items-center">
       <Line :data="chartData" :options="chartOptions" />
+      <div class="text-lg">
+        <span>Total weight lifted of </span>
+        <select>
+          <option v-for="exercise in chart.lineChartData.exercises" :value="exercise">{{ exercise }}</option>
+        </select>
+        <span> exercise, in </span>
+        <select>
+          <option value="asd">asd</option>
+        </select>
+      </div>
     </div>
 </template>
 

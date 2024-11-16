@@ -12,14 +12,32 @@
     <!-- Nhìn chart cũng không aesthetic lắm, cân nhắc thay chart khác -->
         <div class="flex gap-6 flex-wrap w-full">
             <div class="flex-grow bg-white p-8 rounded-2xl">
-                <LineChart />
+                <Suspense>
+                
+                    <LineChart />
+
+                    <template #fallback>Loading chart...</template>
+
+                </Suspense>
             </div>
             <div class="flex flex-col gap-6">
                 <div class="bg-white p-8 rounded-2xl">
-                    <BarChart />
+                    <Suspense>
+                    
+                        <BarChart />
+
+                        <template #fallback>Loading chart...</template>
+
+                    </Suspense>
                 </div>
                 <div class="bg-white p-8 rounded-2xl">
-                    <PieChart />
+                    <Suspense>
+                    
+                        <PieChart />
+
+                        <template #fallback>Loading chart...</template>
+
+                    </Suspense>
                 </div>
             </div>
         </div>
