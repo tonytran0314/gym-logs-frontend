@@ -8,6 +8,7 @@ export const useChartStore = defineStore('chartStore', () => {
     /*                                   STATES                                   */
     /* -------------------------------------------------------------------------- */
     const lineChartData = ref(null)
+    const updatedChart = ref(null)
 
 
     /* -------------------------------------------------------------------------- */
@@ -23,20 +24,16 @@ export const useChartStore = defineStore('chartStore', () => {
         }
     }
 
-    // const changeExercise = async (event) => {
-    //     try {
-    //         if(lineChartData.value) {
-    //             lineChartData.value.destroy()
-    //             const newExercise = event.target.value
-    //             const path = '/chart/weight-level/' + newExercise
-    //             const res = await api.get(path)
-    //             lineChartData.value = res.data
-    //             console.log(lineChartData.value)
-    //         }
-    //     } catch (error) {
-    //         console.log(error)
-    //     }
-    // }
+    const updateLineChart = async (newExercise) => {
+        try {
+                const path = '/chart/weight-level/' + newExercise
+                const res = await api.get(path)
+                
+                updatedChart.value = res.data
+        } catch (error) {
+            console.log(error)
+        }
+    }
 
 
     /* -------------------------------------------------------------------------- */
@@ -50,7 +47,8 @@ export const useChartStore = defineStore('chartStore', () => {
     /* -------------------------------------------------------------------------- */
     return {
         lineChartData,
+        updatedChart,
         getLineData,
-        // changeExercise
+        updateLineChart
     }
 })

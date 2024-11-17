@@ -1,6 +1,7 @@
 <script setup>
   import { Line } from 'vue-chartjs'
   import { useChartStore } from '@/stores/chartStore'
+  import { ref } from 'vue'
   import {
     Chart as ChartJS,
     Title,
@@ -74,14 +75,29 @@
       },
     },
   };
+
+  const chartRef = ref(null)
+  const updateChart = async (event) => {
+
+    const newExercise = event.target.value
+
+    await chart.updateLineChart(newExercise)
+
+    chartRef.value.chart.config.data.labels = chart.updatedChart.dates
+    chartRef.value.chart.config.data.datasets[0].data = chart.updatedChart.weight_levels
+
+    chartRef.value.chart.update()
+
+    
+  }
 </script>
   
 <template>
     <div class="chart-container flex flex-col items-center">
-      <Line :data="chartData" :options="chartOptions" />
+      <Line ref="chartRef" :data="chartData" :options="chartOptions" />
       <div class="text-lg">
         <span>Total weight lifted of </span>
-        <select>
+        <select @change="updateChart">
           <option v-for="exercise in chart.lineChartData.exercises" :value="exercise">{{ exercise }}</option>
         </select>
         <span> exercise, in </span>
