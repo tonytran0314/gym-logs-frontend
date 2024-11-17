@@ -18,18 +18,17 @@ export const useChartStore = defineStore('chartStore', () => {
         try {
             const res = await api.get('/chart/weight-level')
             lineChartData.value = res.data
-            console.log(res.data)
         } catch (error) {
             console.log(error)
         }
     }
 
-    const updateLineChart = async (newExercise) => {
+    const updateLineChart = async (newExercise, newPeriod) => {
         try {
-                const path = '/chart/weight-level/' + newExercise
-                const res = await api.get(path)
-                
-                updatedChart.value = res.data
+            const path = '/chart/weight-level/' + newExercise + '/' + newPeriod
+            const res = await api.get(path)
+            
+            updatedChart.value = res.data
         } catch (error) {
             console.log(error)
         }

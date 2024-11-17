@@ -77,18 +77,17 @@
   };
 
   const chartRef = ref(null)
-  const updateChart = async (event) => {
+  const selectedExercise = ref(chart.lineChartData.exercise)
+  const selectedPeriod = ref(1)
 
-    const newExercise = event.target.value
+  const updateChart = async () => {
 
-    await chart.updateLineChart(newExercise)
+    await chart.updateLineChart(selectedExercise.value, selectedPeriod.value)
 
     chartRef.value.chart.config.data.labels = chart.updatedChart.dates
     chartRef.value.chart.config.data.datasets[0].data = chart.updatedChart.weight_levels
 
     chartRef.value.chart.update()
-
-    
   }
 </script>
   
@@ -97,12 +96,12 @@
       <Line ref="chartRef" :data="chartData" :options="chartOptions" />
       <div class="text-lg">
         <span>Total weight lifted of </span>
-        <select @change="updateChart">
-          <option v-for="exercise in chart.lineChartData.exercises" :value="exercise">{{ exercise }}</option>
+        <select v-model="selectedExercise" @change="updateChart">
+          <option v-for="exercise in chart.lineChartData.exercises" :key="exercise" :value="exercise">{{ exercise }}</option>
         </select>
         <span> exercise, in </span>
-        <select>
-          <option value="asd">asd</option>
+        <select v-model="selectedPeriod" @change="updateChart">
+          <option v-for="period in chart.lineChartData.periods" :key="period.value" :value="period.value">{{ period.label }}</option>
         </select>
       </div>
     </div>
