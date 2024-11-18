@@ -27,7 +27,7 @@
         data: chart.lineChartData.weight_levels,
         borderColor: '#059669',
         backgroundColor: 'rgba(75, 192, 192, 0.2)',
-        borderWidth: 2,
+        borderWidth: 3,
         tension: 0.3, // Curved line effect
         fill: true,
         pointBackgroundColor: '#059669',

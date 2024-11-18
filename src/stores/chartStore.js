@@ -8,6 +8,7 @@ export const useChartStore = defineStore('chartStore', () => {
     /*                                   STATES                                   */
     /* -------------------------------------------------------------------------- */
     const lineChartData = ref(null)
+    const pieChartData = ref(null)
     const updatedChart = ref(null)
 
 
@@ -18,6 +19,16 @@ export const useChartStore = defineStore('chartStore', () => {
         try {
             const res = await api.get('/chart/weight-level')
             lineChartData.value = res.data
+        } catch (error) {
+            console.log(error)
+        }
+    }
+
+    const getPieData = async () => {
+        try {
+            const res = await api.get('/chart/muscle-proportions')
+            pieChartData.value = res.data
+            console.log(pieChartData.value)
         } catch (error) {
             console.log(error)
         }
@@ -46,8 +57,10 @@ export const useChartStore = defineStore('chartStore', () => {
     /* -------------------------------------------------------------------------- */
     return {
         lineChartData,
+        pieChartData,
         updatedChart,
         getLineData,
+        getPieData,
         updateLineChart
     }
 })
