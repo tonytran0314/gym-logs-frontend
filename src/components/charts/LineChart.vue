@@ -11,6 +11,7 @@
     PointElement,
     CategoryScale,
     LinearScale,
+    BarElement,
   } from 'chart.js';
   
   ChartJS.register(Title, Tooltip, Legend, LineElement, PointElement, CategoryScale, LinearScale);
@@ -24,14 +25,14 @@
       {
         label: 'Weight',
         data: chart.lineChartData.weight_levels,
-        borderColor: 'rgba(75, 192, 192, 1)',
+        borderColor: '#059669',
         backgroundColor: 'rgba(75, 192, 192, 0.2)',
         borderWidth: 2,
         tension: 0.3, // Curved line effect
         fill: true,
-        pointBackgroundColor: 'rgba(75, 192, 192, 1)',
+        pointBackgroundColor: '#059669',
         pointBorderColor: '#fff',
-        pointRadius: 5,
+        pointRadius: 8,
       },
     ],
   };
@@ -92,26 +93,19 @@
 </script>
   
 <template>
-    <div class="chart-container flex flex-col items-center">
+    <div class="h-96 flex flex-col items-center">
       <Line ref="chartRef" :data="chartData" :options="chartOptions" />
-      <div class="text-lg">
-        <span>Total weight lifted of </span>
-        <select v-model="selectedExercise" @change="updateChart">
-          <option v-for="exercise in chart.lineChartData.exercises" :key="exercise" :value="exercise">{{ exercise }}</option>
-        </select>
-        <span> exercise, in </span>
-        <select v-model="selectedPeriod" @change="updateChart">
-          <option v-for="period in chart.lineChartData.periods" :key="period.value" :value="period.value">{{ period.label }}</option>
-        </select>
+      <div class="text-lg flex gap-10">
+        <!-- <span>Total weight lifted in lbs:</span> -->
+        <div class="flex gap-10">
+          <select v-model="selectedExercise" @change="updateChart">
+            <option v-for="exercise in chart.lineChartData.exercises" :key="exercise" :value="exercise">{{ exercise }}</option>
+          </select>
+          <select v-model="selectedPeriod" @change="updateChart">
+            <option v-for="period in chart.lineChartData.periods" :key="period.value" :value="period.value">{{ period.label }}</option>
+          </select>
+        </div>
       </div>
     </div>
 </template>
-
-<style scoped>
-  .chart-container {
-    max-width: 800px;
-    margin: 0 auto;
-    height: 400px;
-  }
-</style>
   

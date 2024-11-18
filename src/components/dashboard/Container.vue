@@ -11,7 +11,7 @@
     <!-- CHARTS -->
     <!-- Nhìn chart cũng không aesthetic lắm, cân nhắc thay chart khác -->
         <div class="flex gap-6 flex-wrap w-full">
-            <div class="flex-grow bg-white p-8 rounded-2xl">
+            <div class="w-full lg:flex-[2] bg-white p-4 md:p-8 rounded-2xl">
                 <Suspense>
                 
                     <LineChart />
@@ -20,7 +20,7 @@
 
                 </Suspense>
             </div>
-            <div class="flex flex-col gap-6">
+            <div class="w-full flex lg:flex-1 flex-col gap-6">
                 <div class="bg-white p-8 rounded-2xl">
                     <Suspense>
                     
