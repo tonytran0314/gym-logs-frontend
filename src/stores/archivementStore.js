@@ -2,43 +2,51 @@ import { defineStore } from 'pinia'
 import { ref } from 'vue'
 import { api } from '@/services/axios.js'
 
-export const useChartStore = defineStore('chartStore', () => {
+export const useArchivementStore = defineStore('archivementStore', () => {
 
     /* -------------------------------------------------------------------------- */
     /*                                   STATES                                   */
     /* -------------------------------------------------------------------------- */
-    const lineChartData = ref(null)
-    const pieChartData = ref(null)
-    const updatedChart = ref(null)
+    const streak = ref(null)
+    const workoutDays = ref(null)
+    const mostPopularExerciseComparison = ref(null)
+    const totalExerciseThisWeek = ref(null)
 
 
     /* -------------------------------------------------------------------------- */
     /*                                   METHODS                                  */
     /* -------------------------------------------------------------------------- */
-    const getLineData = async () => {
+    const getStreak = async () => {
         try {
-            const res = await api.get('/chart/weight-level')
-            lineChartData.value = res.data
+            const res = await api.get('/archivement/streak')
+            streak.value = res.data.current_streak
         } catch (error) {
             console.log(error)
         }
     }
 
-    const getPieData = async () => {
+    const getWorkoutDays = async () => {
         try {
-            const res = await api.get('/chart/muscle-proportions')
-            pieChartData.value = res.data
+            const res = await api.get('/archivement/workout-days')
+            workoutDays.value = res.data.workoutDays
         } catch (error) {
             console.log(error)
         }
     }
 
-    const updateLineChart = async (newExercise, newPeriod) => {
+    const getMostPopularExerciseComparison = async () => {
         try {
-            const path = '/chart/weight-level/' + newExercise + '/' + newPeriod
-            const res = await api.get(path)
-            
-            updatedChart.value = res.data
+            const res = await api.get('/archivement/popular-exercise-comparison')
+            mostPopularExerciseComparison.value = res.data
+        } catch (error) {
+            console.log(error)
+        }
+    }
+
+    const getTotalExerciseThisWeek = async () => {
+        try {
+            const res = await api.get('/archivement/total-exercise-this-week')
+            totalExerciseThisWeek.value = res.data.totalExercises
         } catch (error) {
             console.log(error)
         }
@@ -55,11 +63,13 @@ export const useChartStore = defineStore('chartStore', () => {
     /*                                   RETURN                                   */
     /* -------------------------------------------------------------------------- */
     return {
-        lineChartData,
-        pieChartData,
-        updatedChart,
-        getLineData,
-        getPieData,
-        updateLineChart
+        streak,
+        workoutDays,
+        mostPopularExerciseComparison,
+        totalExerciseThisWeek,
+        getStreak,
+        getWorkoutDays,
+        getMostPopularExerciseComparison,
+        getTotalExerciseThisWeek
     }
 })

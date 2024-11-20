@@ -1,17 +1,22 @@
 <script setup>
     import { useModalStore } from '@/stores/modalStore'
     import { useAuthStore } from '@/stores/authStore'
+    import { ref } from 'vue'
     
     import StartExerciseModal from '@/components/modals/StartExerciseModal.vue'
-    import LoadingButton from '@/components/form/LoadingButton.vue'
     import Button from '@/components/form/Button.vue'
     import NavBar from '@/components/navigation/NavBar.vue'
 
     const auth = useAuthStore()
     const modal = useModalStore()
+    const isDropdownOpened = ref(false)
 
     const startExerciseDay = () => {
         modal.open(StartExerciseModal)
+    }
+
+    const toggleDropdown = () => {
+        isDropdownOpened.value = !isDropdownOpened.value
     }
 
 </script>
@@ -28,20 +33,19 @@
             </div>
             
             <!-- Put this in the mini navigation on avatar -->
-            <form @submit.prevent="auth.logout">
-                <LoadingButton v-if="auth.isLoading" />
-                <Button v-else>Đăng xuất</Button>
-            </form>
-
-            <div class="flex space-x-2">
+            <div @click="toggleDropdown" @click.self="toggleDropdown" class="flex space-x-2 relative cursor-pointer">
                 <div class="size-12 rounded-full bg-gray-500"></div>
                 <div>
-                    <p class="font-bold pt-1">Trần Gia Huy</p>
+                    <p class="font-bold pt-1">Huy Tran</p>
                     <p class="text-sm text-gray-500 space-x-2 flex items-center">
-                        <span>Đang tập luyện</span>
+                        <span>Working out</span>
                         <span class="inline-block size-3 rounded-full bg-emerald-300"></span>
                     </p> 
                     <!-- Sau chữ Đang tập luyện có dấu chấm xanh như FB, suy nghĩ xem không tập thì để chữ gì. Hoặc cho người ta tự custom như liên minh -->
+                </div>
+                <div v-show="isDropdownOpened" class="shadow-md rounded cursor-pointer absolute right-0 bottom-full">
+                    <div class="p-2 hover:bg-gray-200">Settings</div>
+                    <div @click="auth.logout" class="p-2 hover:bg-gray-200">Logout</div>
                 </div>
                 <!-- Chỗ này có cái dấu 3 chấm hay mũi tên đi lên hoặc mũi tên chỉ bên phải gì đó, bấm vô nó mở menu nhỏ nhỏ -->
             </div>

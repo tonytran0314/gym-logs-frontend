@@ -12,10 +12,14 @@
             label: 'Profile',
             destination: '/profile'
         },
-        // {
-        //     label: 'Utilities',
-        //     destination: '/'
-        // },
+        {
+            label: 'History',
+            destination: '/history'
+        },
+        {
+            label: 'Utilities',
+            destination: '/utilities'
+        },
         // {
         //     label: 'Settings',
         //     destination: '/'
