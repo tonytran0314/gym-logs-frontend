@@ -17,8 +17,8 @@
 </script>
 
 <template>
-    <div class="space-y-4 md:space-y-6">
-        <h1 class="text-xl font-bold leading-tight tracking-tight text-gray-900 md:text-2xl">Đăng nhập</h1>
+    <div class="bg-white dark:bg-gray-800 space-y-4 md:space-y-6">
+        <h1 class="text-xl font-bold leading-tight tracking-tight text-gray-900 dark:text-blue-50 md:text-2xl">Log In</h1>
         <form @submit.prevent="loginHandle" class="space-y-4 md:space-y-6">
             <Input
                 v-model="email"
@@ -30,7 +30,7 @@
             
             <Input
                 v-model="password"
-                label="Mật khẩu"
+                label="Password"
                 type="password"
                 name="password"
                 placeholder="••••••••" />
@@ -41,12 +41,12 @@
 
             
             <LoadingButton v-if="auth.isLoading" class="w-full" />
-            <Button v-else class="w-full">Đăng nhập</Button>
+            <Button v-else class="w-full">Log In</Button>
 
             <p class="text-sm font-light text-gray-500">
-                Bạn chưa có tài khoản? 
+                Don't have an account yet?
                 <router-link to="/signup" class="font-medium text-primary-600 hover:underline dark:text-primary-500">
-                    Đăng ký ở đây
+                    Sign Up here
                 </router-link>
             </p>
         </form>

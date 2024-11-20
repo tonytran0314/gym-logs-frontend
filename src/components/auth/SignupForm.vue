@@ -22,7 +22,7 @@
 
 <template>
     <div class="space-y-4 md:space-y-6">
-        <h1 class="text-xl font-bold leading-tight tracking-tight text-gray-900 md:text-2xl">Create Account</h1>
+        <h1 class="text-xl font-bold leading-tight tracking-tight text-gray-900 dark:text-blue-50 md:text-2xl">Create Account</h1>
         <form @submit.prevent="signupHandle" class="space-y-4 md:space-y-6">
             <Input
                 v-model="form.name"

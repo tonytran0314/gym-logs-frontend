@@ -20,10 +20,10 @@
             label: 'Utilities',
             destination: '/utilities'
         },
-        // {
-        //     label: 'Settings',
-        //     destination: '/'
-        // },
+        {
+            label: 'Settings',
+            destination: '/settings'
+        },
     ]
 
     const isCurrentRoute = (destination) => route.path === destination
@@ -38,9 +38,9 @@
                 <li v-for="menu in menus">
                     <router-link 
                         :to="menu.destination"
-                        class="block font-bold pl-7 pt-4 pb-4 rounded border-l-4 hover:bg-emerald-100 hover:border-emerald-600 hover:text-emerald-600"
+                        class="block font-bold pl-7 pt-4 pb-4 rounded border-l-4 hover:bg-emerald-100 hover:border-emerald-600 hover:text-emerald-600 dark:text-white dark:hover:border-emerald-600 dark:hover:text-emerald-600"
                         :class="
-                            isCurrentRoute(menu.destination) ? 'bg-emerald-100 text-emerald-600 border-emerald-600' : 'border-white'
+                            isCurrentRoute(menu.destination) ? 'bg-emerald-100 text-emerald-600 border-emerald-600 dark:text-emerald-600' : 'border-white dark:border-gray-800'
                         ">
                             {{ menu.label }}
                     </router-link>

@@ -3,7 +3,7 @@
 </script>
 
 <template>
-    <div class="bg-white p-8 rounded-2xl">
+    <div class="bg-white dark:bg-gray-800 p-8 rounded-2xl">
         <Suspense>
 
             <UserProfile />
