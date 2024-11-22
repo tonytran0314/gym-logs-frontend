@@ -15,6 +15,7 @@ export const useExerciseStore = defineStore('exerciseStore', () => {
         exercise: null
     })
     const currentStep = ref(1)
+    const currentExercise = ref(null)
     const router = useRouter()
 
     /* -------------------------------------------------------------------------- */
@@ -33,6 +34,16 @@ export const useExerciseStore = defineStore('exerciseStore', () => {
         try {
             const result = await api.get('/exercises?muscle_id=' + record.muscle)
             exercises.value = result.data
+        } catch (error) {
+            console.log(error)
+        }
+    }
+
+    const getCurrentExercise = async () => {
+        try {
+            const exerciseID =  localStorage.getItem('exercise_id')
+            const res = await api.get('/current-exercise?exercise_id=' + exerciseID)
+            currentExercise.value = res.data
         } catch (error) {
             console.log(error)
         }
@@ -99,8 +110,10 @@ export const useExerciseStore = defineStore('exerciseStore', () => {
         exercises,
         record,
         currentStep,
+        currentExercise,
         getMuscles,
         getExercises,
+        getCurrentExercise,
         start,
         stop,
         saveWorkoutSet

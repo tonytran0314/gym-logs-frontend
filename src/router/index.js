@@ -112,7 +112,6 @@ const routes = [
         beforeEnter: async (to, from, next) => {
           try {
             const res = await api.get('/is-workingout')
-            console.log(res.data)
             if(res.data.isWorkingout) { next() } 
             else { next({ name: 'Home' }) }
           } catch (error) {
