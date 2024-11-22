@@ -14,6 +14,7 @@ export const useExerciseStore = defineStore('exerciseStore', () => {
         muscle: null,
         exercise: null
     })
+    const currentStep = ref(1)
     const router = useRouter()
 
     /* -------------------------------------------------------------------------- */
@@ -97,6 +98,7 @@ export const useExerciseStore = defineStore('exerciseStore', () => {
         muscles,
         exercises,
         record,
+        currentStep,
         getMuscles,
         getExercises,
         start,

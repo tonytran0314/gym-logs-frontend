@@ -1,14 +1,26 @@
 <script setup>
     import { useExerciseStore } from '@/stores/exerciseStore'
+    import { useModalStore } from '@/stores/modalStore'
 
+    const modal = useModalStore()
     const exercise = useExerciseStore()
+
+    const backToPreviousStep = () => {
+        exercise.currentStep--
+    }
+
+    const startExercise = (event) => {
+        exercise.record.exercise = event.currentTarget.getAttribute('data-exercise-id')
+        exercise.start()
+        modal.close()
+    }
 </script>
 
 <template>
-    <div class="flex flex-col">
-        <select v-model="exercise.record.exercise" class="border bg-white dark:bg-gray-800 text-gray-900 dark:text-blue-50" id="exercise" required>
-        <option value="" disabled selected>Choose the exercise</option>
-        <option v-for="exercise in exercise.exercises" :key="exercise.key" :value="exercise.id">{{ exercise.name }}</option>
-        </select>
+    <div class="flex flex-wrap justify-center gap-6">
+      <div v-for="exercise in exercise.exercises" :key="exercise.id" @click="startExercise" :data-exercise-id="exercise.id" class="bg-white text-gray-900 dark:text-blue-50 dark:bg-gray-900 rounded-xl py-6 px-10 hover:cursor-pointer dark:hover:bg-emerald-600 capitalize">
+        {{ exercise.name }}
+      </div>
     </div>
+    <div @click="backToPreviousStep" class="text-gray-900 dark:text-blue-50 cursor-pointer hover:underline">Back</div>
 </template>
