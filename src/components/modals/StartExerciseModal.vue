@@ -29,15 +29,15 @@
 </script>
 
 <template>
-    <div class="bg-white space-y-8 p-8 rounded-xl">
+    <div class="bg-white dark:bg-gray-800 space-y-8 p-8 rounded-xl">
       <CloseButton />
 
-      <h3 class="text-3xl font-bold">Choose your exercises for today</h3>
+      <h3 class="text-3xl font-bold text-gray-900 dark:text-blue-50">Choose your exercises for today</h3>
       
       <form @submit.prevent="startExercise" class="flex space-x-8">
 
         <div class="flex flex-col">
-          <select @change="selectMuscle" v-model="exerciseRecord.muscle" class="border" id="muscle" required>
+          <select @change="selectMuscle" v-model="exerciseRecord.muscle" class="border bg-white dark:bg-gray-800 text-gray-900 dark:text-blue-50" id="muscle" required>
             <option value="" disabled selected>Choose the muscle</option>
             <option value="abdominals">abdominals</option>
             <option value="abductors">abductors</option>
@@ -59,7 +59,7 @@
         </div>
 
         <div class="flex flex-col">
-          <select v-model="exerciseRecord.exercise" class="border" id="exercise" required>
+          <select v-model="exerciseRecord.exercise" class="border bg-white dark:bg-gray-800 text-gray-900 dark:text-blue-50" id="exercise" required>
             <option value="" disabled selected>Choose the exercise</option>
             <option v-for="exercise in exercises" :value="exercise.name">{{ exercise.name }}</option>
           </select>

@@ -28,7 +28,7 @@
                 aria-modal="true" 
                 role="dialog" 
                 tabindex="-1"
-                class="fixed top-0 left-0 z-[999] w-full h-dvh bg-black bg-opacity-20 flex items-center justify-center">
+                class="fixed top-0 left-0 z-[999] w-full h-dvh bg-black bg-opacity-80 flex items-center justify-center">
 
                 <component :is="modal.content" />
 

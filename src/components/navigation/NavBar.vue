@@ -17,10 +17,6 @@
             destination: '/history'
         },
         {
-            label: 'Utilities',
-            destination: '/utilities'
-        },
-        {
             label: 'Settings',
             destination: '/settings'
         },
