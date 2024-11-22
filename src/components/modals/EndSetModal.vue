@@ -13,8 +13,8 @@
   const now = new Date()
 
   const set = reactive({
-    exercise: localStorage.getItem('exercise') || null,
-    muscle: localStorage.getItem('muscle') || null,
+    exercise_id: localStorage.getItem('exercise_id') || null,
+    muscle_id: localStorage.getItem('muscle_id') || null,
     weight_level: null,
     reps: null
   })

@@ -1,6 +1,6 @@
 import { defineStore } from "pinia"
-import { ref } from "vue"
-import { api, exerciseApi } from "@/services/axios"
+import { reactive, ref } from "vue"
+import { api } from "@/services/axios"
 import { useRouter } from 'vue-router'
 
 export const useExerciseStore = defineStore('exerciseStore', () => {
@@ -8,28 +8,42 @@ export const useExerciseStore = defineStore('exerciseStore', () => {
     /* -------------------------------------------------------------------------- */
     /*                                   STATES                                   */
     /* -------------------------------------------------------------------------- */
+    const muscles = ref(null)
     const exercises = ref(null)
+    const record = reactive({
+        muscle: null,
+        exercise: null
+    })
     const router = useRouter()
 
     /* -------------------------------------------------------------------------- */
     /*                                   METHODS                                  */
     /* -------------------------------------------------------------------------- */
-    const getExercises = async (selectedMuscle) => {
+    const getMuscles = async () => {
         try {
-            const result = await exerciseApi.get('/exercises?muscle=' + selectedMuscle)
+            const result = await api.get('/muscles')
+            muscles.value = result.data
+        } catch (error) {
+            console.log(error)
+        }
+    }
+
+    const getExercises = async () => {
+        try {
+            const result = await api.get('/exercises?muscle_id=' + record.muscle)
             exercises.value = result.data
         } catch (error) {
             console.log(error)
         }
     }
 
-    const startExercise = async (record) => {
-        tempStore(record)
+    const start = async () => {
+        tempStore()
         await enableWorkoutStatus()
         goToOnSetScreen()
     }
 
-    const stopExercise = async () => {
+    const stop = async () => {
         await disableWorkoutStatus()
         goToHomePage()
     }
@@ -55,9 +69,9 @@ export const useExerciseStore = defineStore('exerciseStore', () => {
         router.push({ name: 'Home' })
     }
 
-    const tempStore = (record) => {
-        localStorage.setItem('muscle', record.muscle)
-        localStorage.setItem('exercise', record.exercise)
+    const tempStore = () => {
+        localStorage.setItem('muscle_id', record.muscle)
+        localStorage.setItem('exercise_id', record.exercise)
     }
 
     const enableWorkoutStatus = async () => {
@@ -80,10 +94,13 @@ export const useExerciseStore = defineStore('exerciseStore', () => {
     /*                                   RETURN                                   */
     /* -------------------------------------------------------------------------- */
     return {
+        muscles,
         exercises,
+        record,
+        getMuscles,
         getExercises,
-        startExercise,
-        stopExercise,
+        start,
+        stop,
         saveWorkoutSet
     }
 

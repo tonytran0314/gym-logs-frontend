@@ -14,7 +14,7 @@
     const exercise = useExerciseStore()
 
     const stopExercise = () => {
-        exercise.stopExercise()
+        exercise.stop()
     }
 
     const gotoNextSet = () => {
