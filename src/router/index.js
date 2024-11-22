@@ -99,26 +99,41 @@ const routes = [
   {
     path: '/workout',
     component: () => import('@/views/WorkoutView.vue'),
-    beforeEnter: async (to, from, next) => {
-      try {
-        const res = await api.get('/is-workingout')
-        
-        if(res.data.isWorkingout) { next() } 
-        else { next({ name: 'Home' }) }
-      } catch (error) {
-        console.log(error) 
-      }
-    },
     children: [
       {
         path: '',
+        name: 'Choose Muscle and Exercise Screen',
+        component: () => import('@/components/workout/muscle_exercise_selection/Container.vue'),
+      },
+      {
+        path: 'onset',
         name: 'On Set Screen',
         component: () => import('@/components/workout/OnSet.vue'),
+        beforeEnter: async (to, from, next) => {
+          try {
+            const res = await api.get('/is-workingout')
+            console.log(res.data)
+            if(res.data.isWorkingout) { next() } 
+            else { next({ name: 'Home' }) }
+          } catch (error) {
+            console.log(error) 
+          }
+        },
       },
       {
         path: 'rest',
         name: 'Rest Screen',
         component: () => import('@/components/workout/Rest.vue'),
+        beforeEnter: async (to, from, next) => {
+          try {
+            const res = await api.get('/is-workingout')
+            
+            if(res.data.isWorkingout) { next() } 
+            else { next({ name: 'Home' }) }
+          } catch (error) {
+            console.log(error) 
+          }
+        },
       },
     ],
   },

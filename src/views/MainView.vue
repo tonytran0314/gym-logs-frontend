@@ -1,18 +1,17 @@
 <script setup>
-    import { useModalStore } from '@/stores/modalStore'
     import { useAuthStore } from '@/stores/authStore'
     import { ref } from 'vue'
+    import { useRouter } from 'vue-router'
     
-    import StartExerciseModal from '@/components/modals/StartExerciseModal.vue'
     import Button from '@/components/form/Button.vue'
     import NavBar from '@/components/navigation/NavBar.vue'
 
     const auth = useAuthStore()
-    const modal = useModalStore()
     const isDropdownOpened = ref(false)
+    const router = useRouter()
 
-    const startExerciseDay = () => {
-        modal.open(StartExerciseModal)
+    const selectMuscleAndExercise = () => {
+        router.push({ name: 'Choose Muscle and Exercise Screen' })
     }
 
     const toggleDropdown = () => {
@@ -54,7 +53,7 @@
     <!-- RIGHT COLUMN -->
         <div class="flex-grow overflow-auto bg-blue-50 dark:bg-gray-900">
             <div class="flex justify-end bg-white dark:bg-gray-800 pt-5 pb-5 pr-8">
-                <Button @click="startExerciseDay">Workout now</Button>
+                <Button @click="selectMuscleAndExercise">Workout now</Button>
             </div>
             <div class="p-8 bg-blue-50 dark:bg-gray-900">
                 <router-view />
