@@ -8,6 +8,7 @@ export const useHistoryStore = defineStore('historyStore', () => {
     /*                                   STATES                                   */
     /* -------------------------------------------------------------------------- */
     const records = ref(null)
+    const details = ref(null)
 
 
     /* -------------------------------------------------------------------------- */
@@ -30,6 +31,7 @@ export const useHistoryStore = defineStore('historyStore', () => {
     /* -------------------------------------------------------------------------- */
     return {
         records,
+        details,
         get
     }
 
