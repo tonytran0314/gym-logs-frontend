@@ -7,8 +7,8 @@
 </script>
 
 <template>
-    <div class="flex flex-wrap gap-6">
-        <Card v-for="record in history.records" :content="record.exercises">{{ record.date }}</Card>
+    <div class="flex flex-col flex-wrap gap-6">
+        <Card v-for="record in history.records" :record="record" />
     </div>
 </template>
 
