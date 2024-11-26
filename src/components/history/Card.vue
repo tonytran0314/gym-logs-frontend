@@ -23,7 +23,7 @@
             <div class="bg-gray-300 dark:bg-gray-600 w-[1px]"></div>
             <div class="flex flex-col gap-6">
                 <div v-for="exercise in record.exercises" class="flex items-center text-gray-900 dark:text-blue-50 gap-3">
-                    <p class="bg-emerald-600 text-white px-4 py-1 rounded-full capitalize">{{ exercise.muscle }}</p>
+                    <p class="bg-emerald-600 text-white px-4 py-1 rounded-full capitalize text-sm">{{ exercise.muscle }}</p>
                     <p>{{ exercise.name }}</p>
                     <p>x {{ exercise.sets.length }} set(s)</p>
                 </div>
