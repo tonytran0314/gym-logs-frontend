@@ -5,11 +5,23 @@ import App from './App.vue'
 import router from './router'
 import Toast from "vue-toastification"
 import "vue-toastification/dist/index.css"
+/* import the fontawesome core */
+import { library } from '@fortawesome/fontawesome-svg-core'
+
+/* import font awesome icon component */
+import { FontAwesomeIcon } from '@fortawesome/vue-fontawesome'
+
+/* import specific icons */
+import { faHome, faGear, faUser, faClockRotateLeft, faRightFromBracket, faDumbbell } from '@fortawesome/free-solid-svg-icons'
+
+/* add icons to the library */
+library.add(faHome, faGear, faUser, faClockRotateLeft, faRightFromBracket, faDumbbell) 
 
 
 const app = createApp(App)
 const pinia = createPinia()
 
+app.component('font-awesome-icon', FontAwesomeIcon)
 app.use(router)
 app.use(pinia)
 app.use(Toast)

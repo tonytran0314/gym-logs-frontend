@@ -42,7 +42,10 @@
     <!-- RIGHT COLUMN -->
         <div class="flex-grow overflow-auto bg-blue-50 dark:bg-gray-900">
             <div class="flex justify-end bg-white dark:bg-gray-800 pt-5 pb-5 pr-8">
-                <Button @click="selectMuscleAndExercise">Workout now</Button>
+                <Button @click="selectMuscleAndExercise" class="flex gap-2 items-center">
+                    <font-awesome-icon :icon="['fas', 'dumbbell']" size="lg"/>
+                    <span>Workout now</span>
+                </Button>
             </div>
             <div class="p-8 bg-blue-50 dark:bg-gray-900">
                 <router-view />
