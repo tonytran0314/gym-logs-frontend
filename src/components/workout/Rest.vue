@@ -1,9 +1,9 @@
 <script setup>
-    import Button from '@/components/form/Button.vue'
-
     import { useRouter } from 'vue-router'
     import { useExerciseStore } from '@/stores/exerciseStore'
     import { reactive } from 'vue'
+
+    import RestIllustration from '@/components/workout/illustrations/Rest.vue' 
     
     const restCountdown = reactive({
         minutes: null,
@@ -42,11 +42,17 @@
 </script>
 
 <template>
-    <div>
-        <p>This is rest view.</p>
-        <p>{{ restCountdown.minutes }}:{{ restCountdown.seconds }}</p>
+    <div class="flex gap-8">
+        <RestIllustration />
+        <div class="bg-white dark:bg-gray-800 p-8 rounded-2xl flex flex-col items-center gap-10 justify-between">
+            <p class="text-gray-900 dark:text-blue-50 text-4xl font-bold">Take a short break ...</p>
+            <p class="text-gray-900 dark:text-blue-50 text-9xl">{{ restCountdown.minutes }}:{{ restCountdown.seconds }}</p>
 
-        <Button @click="stopExercise">Stop the exercise</Button>
-        <Button @click="gotoNextSet">Next set</Button>
+
+            <div class="flex gap-4">
+                <div @click="stopExercise" class="text-gray-900 dark:text-blue-50 cursor-pointer bg-gray-500 px-6 py-2 rounded-lg hover:bg-gray-600">Stop the Exercise</div>
+                <div @click="gotoNextSet" class="text-gray-900 dark:text-blue-50 cursor-pointer bg-emerald-600 px-6 py-2 rounded-lg hover:bg-emerald-700 disabled">Next Set</div>
+            </div>
+        </div>
     </div>
 </template>
