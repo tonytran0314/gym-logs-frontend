@@ -1,5 +1,6 @@
 <script setup>    
     import UserProfile from '@/components/profile/UserProfile.vue'
+    import ProfileLoadingAnimation from '@/components/loading_animation/Profile.vue'
 </script>
 
 <template>
@@ -9,7 +10,7 @@
             <UserProfile />
 
             <template #fallback>
-                Loading Profile ...
+                <ProfileLoadingAnimation />
             </template>
         </Suspense>
     </div>

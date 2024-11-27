@@ -1,5 +1,6 @@
 <script setup>
     import Records from '@/components/history/Records.vue'
+    import HistoryLoadingAnimation from '@/components/loading_animation/History.vue'
 </script>
 
 <template>
@@ -9,7 +10,7 @@
             <Records />
 
             <template #fallback>
-                Loading records ...
+                <HistoryLoadingAnimation />
             </template>
         </Suspense>
     </div>
