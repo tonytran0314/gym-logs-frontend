@@ -1,6 +1,8 @@
 <script setup>
   import MuscleSelection from '@/components/workout/muscle_exercise_selection/MuscleSelection.vue'
   import ExerciseSelection from '@/components/workout/muscle_exercise_selection/ExerciseSelection.vue'
+  import MuscleLoading from '@/components/loading_animation/MuscleSelection.vue'
+
   import { useExerciseStore } from '@/stores/exerciseStore'
   import { useRouter } from 'vue-router'
 
@@ -24,7 +26,9 @@
                 <MuscleSelection v-if="exercise.currentStep === 1" />
                 <ExerciseSelection v-else-if="exercise.currentStep === 2" />
             </div>
-            <template #fallback>Loading muscles...</template>
+            <template #fallback>
+              <MuscleLoading />
+            </template>
         </Suspense>
     </div>
 </template>
