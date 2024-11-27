@@ -2,6 +2,7 @@
   import MuscleSelection from '@/components/workout/muscle_exercise_selection/MuscleSelection.vue'
   import ExerciseSelection from '@/components/workout/muscle_exercise_selection/ExerciseSelection.vue'
   import MuscleLoading from '@/components/loading_animation/MuscleSelection.vue'
+  import CloseButton from '@/components/modals/CloseButton.vue'
 
   import { useExerciseStore } from '@/stores/exerciseStore'
   import { useRouter } from 'vue-router'
@@ -17,7 +18,9 @@
 <template>
     <div class="space-y-12 px-48">
 
-        <div @click="exit" class="text-gray-900 dark:text-blue-50 hover:underline cursor-pointer">Exit</div>
+        <div class="flex justify-end">
+          <CloseButton @click="exit" />
+        </div>
 
         <h3 class="text-3xl text-center font-bold text-gray-900 dark:text-blue-50">Choose the muscle you want to workout today</h3>
     
