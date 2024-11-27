@@ -1,17 +1,23 @@
 <script setup>
     import { useHistoryStore } from '@/stores/historyStore'
+    import CloseButton from '@/components/modals/CloseButton.vue'
 
     const history = useHistoryStore()
 </script>
 
 <template>
     <div class="bg-white dark:bg-gray-800 text-gray-900 dark:text-blue-50 p-8 rounded-2xl space-y-8">
-        <div class="space-y-4">
-            <div class="font-bold text-3xl">Workout History Details</div>
-            <div class="text-2xl">
-                {{ history.details.time.day }},
-                {{ history.details.time.date }},
-                {{ history.details.time.year }}
+        <div class="space-y-2">
+            <div class="flex justify-end">
+                <CloseButton />
+            </div>
+            <div class="flex flex-col gap-4">
+                <div class="font-bold text-3xl">Workout History Details</div>
+                <div class="text-2xl">
+                    {{ history.details.time.day }},
+                    {{ history.details.time.date }},
+                    {{ history.details.time.year }}
+                </div>
             </div>
         </div>
         <div class="space-y-6">
