@@ -8,11 +8,11 @@
 <template>
     <div class="bg-white dark:bg-gray-800 text-gray-900 dark:text-blue-50 p-8 rounded-2xl space-y-8">
         <div class="space-y-2">
-            <div class="flex justify-end">
-                <CloseButton />
-            </div>
-            <div class="flex flex-col gap-4">
-                <div class="font-bold text-3xl">Workout History Details</div>
+            <div class="flex flex-col gap-8">
+                <div class="flex items-center justify-between">
+                    <div class="font-bold text-3xl">Details</div>
+                    <CloseButton />
+                </div>
                 <div class="text-2xl">
                     {{ history.details.time.day }},
                     {{ history.details.time.date }},
