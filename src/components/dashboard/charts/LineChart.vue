@@ -78,7 +78,7 @@
   };
 
   const chartRef = ref(null)
-  const selectedExercise = ref(chart.lineChartData.exercise)
+  const selectedExercise = ref(chart.lineChartData.exercise.id)
   const selectedPeriod = ref(1)
 
   const updateChart = async () => {
@@ -99,7 +99,7 @@
         <!-- <span>Total weight lifted in lbs:</span> -->
         <div class="flex gap-10">
           <select v-model="selectedExercise" @change="updateChart">
-            <option v-for="exercise in chart.lineChartData.exercises" :key="exercise" :value="exercise">{{ exercise }}</option>
+            <option v-for="exercise in chart.lineChartData.exercises" :key="exercise.id" :value="exercise.id">{{ exercise.name }}</option>
           </select>
           <select v-model="selectedPeriod" @change="updateChart">
             <option v-for="period in chart.lineChartData.periods" :key="period.value" :value="period.value">{{ period.label }}</option>
