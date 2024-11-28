@@ -12,11 +12,11 @@
 </script>
 
 <template>
-    <div class="flex gap-6">
+    <div class="flex gap-6 w-full">
 
         <!-- They should have unit (lbs, days, muscle,...) -->
 
-        <div class="flex gap-6">
+        <div class="flex gap-6 flex-1">
             <!-- Streak -->
             <ArchivementItem>
                 <template #title>Streak</template>
@@ -30,7 +30,7 @@
             </ArchivementItem>
         </div>
 
-        <div class="flex gap-6">
+        <div class="flex gap-6 flex-1">
             <!-- Weight level on ... (the most popular exercise or the most current exercise) -->
             <ArchivementItem>
                 <template #title>{{ archivement.mostPopularExerciseComparison.exerciseName }}</template>
