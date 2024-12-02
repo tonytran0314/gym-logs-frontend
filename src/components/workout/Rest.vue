@@ -28,6 +28,8 @@
 
         if(remainingTime <= 0) {
             clearInterval(countdownInterval)
+            restCountdown.minutes = '00'
+            restCountdown.seconds = '00'
             return;
         }
 
