@@ -102,8 +102,13 @@ const routes = [
     children: [
       {
         path: '',
-        name: 'Choose Muscle and Exercise Screen',
-        component: () => import('@/components/workout/muscle_exercise_selection/Container.vue'),
+        name: 'Muscle Selection Screen',
+        component: () => import('@/components/workout/MuscleSelection.vue'),
+      },
+      {
+        path: '/select-exercise',
+        name: 'Exercise Selection Screen',
+        component: () => import('@/components/workout/ExerciseSelection.vue'),
       },
       {
         path: 'onset',

@@ -7,7 +7,7 @@
     const router = useRouter()
 
     const selectMuscleAndExercise = () => {
-        router.push({ name: 'Choose Muscle and Exercise Screen' })
+        router.push({ name: 'Muscle Selection Screen' })
     }
 </script>
 
