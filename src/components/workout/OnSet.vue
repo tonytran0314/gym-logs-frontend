@@ -1,16 +1,6 @@
 <script setup>
-    import { useModalStore } from '@/stores/modalStore'
-
-    import EndSetModal from '@/components/modals/EndSetModal.vue'
-    import Button from '@/components/form/Button.vue'
     import OnSetIllustration from '@/components/workout/illustrations/OnSet.vue'
     import CurrentExercise from '@/components/workout/CurrentExercise.vue'
-
-    const modal = useModalStore()
-
-    const finishSet = () => {
-        modal.open(EndSetModal)
-    }
 </script>
 
 <template>
@@ -23,7 +13,6 @@
                     <template #fallback>Loading current exercise...</template>
                 </Suspense>
             </div>
-            <Button @click="finishSet">I Have Finished This Set</Button>
         </div>
     </div>
 </template>

@@ -31,7 +31,7 @@ export const useExerciseStore = defineStore('exerciseStore', () => {
 
     const getExercises = async () => {
         try {
-            const result = await api.get('/exercises?muscle_id=' + record.muscle)
+            const result = await api.get('/exercises?muscle_id=' + localStorage.getItem('muscle_id'))
             exercises.value = result.data
         } catch (error) {
             console.log(error)
@@ -49,7 +49,7 @@ export const useExerciseStore = defineStore('exerciseStore', () => {
     }
 
     const start = async () => {
-        tempStore()
+        // tempStore()
         await enableWorkoutStatus()
         goToOnSetScreen()
     }
@@ -66,6 +66,14 @@ export const useExerciseStore = defineStore('exerciseStore', () => {
             console.log(error)
         }
         
+    }
+
+    const tempStoreMuscle = (muscleID) => {
+        localStorage.setItem('muscle_id', muscleID)
+    }
+    const tempStoreExercise = (exerciseID) => {
+        localStorage.setItem('exercise_id', exerciseID)
+        record.exercise = exerciseID
     }
 
 
@@ -114,7 +122,9 @@ export const useExerciseStore = defineStore('exerciseStore', () => {
         getCurrentExercise,
         start,
         stop,
-        saveWorkoutSet
+        saveWorkoutSet,
+        tempStoreMuscle,
+        tempStoreExercise
     }
 
 })

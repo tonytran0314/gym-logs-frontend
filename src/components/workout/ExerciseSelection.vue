@@ -2,6 +2,7 @@
     import { useExerciseStore } from '@/stores/exerciseStore'
     import { useRouter } from 'vue-router'
     import CloseButton from '@/components/modals/CloseButton.vue'
+import { onMounted } from 'vue';
 
     const exercise = useExerciseStore()
     const router = useRouter()
@@ -15,7 +16,7 @@
     }
 
     const chooseThisExercise = (exerciseID) => {
-      exercise.record.exercise = exerciseID
+      exercise.tempStoreExercise(exerciseID)
     }
 
     const isChosenExercise = (exerciseID) => exercise.record.exercise === exerciseID 
@@ -23,6 +24,11 @@
     const exit = () => {
       router.push({ name: 'Home' })
     }
+
+    onMounted(() => {
+      exercise.record.exercise = localStorage.getItem('exercise_id')
+      exercise.getExercises()
+    })
 
 </script>
 
