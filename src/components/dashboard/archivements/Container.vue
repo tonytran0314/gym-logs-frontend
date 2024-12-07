@@ -18,33 +18,49 @@
 
         <div class="flex gap-6 flex-1">
             <!-- Streak -->
-            <ArchivementItem>
+            <ArchivementItem :highlighted="true">
                 <template #title>Streak</template>
+                <template #icon><font-awesome-icon :icon="['fas', 'fire']" size="xl" /></template>
                 <template #content>{{ archivement.streak }}</template>
+                <template #unit>days</template>
+                <template #description>Your workout streak is {{ archivement.streak }} days</template>
             </ArchivementItem>
 
             <!-- Workout days this month -->
-            <ArchivementItem>
-                <template #title>Workout Days</template>
+            <ArchivementItem :highlighted="false">
+                <template #title>This Month</template>
+                <template #icon><font-awesome-icon :icon="['fas', 'calendar-days']" size="xl" /></template>
                 <template #content>{{ archivement.workoutDays }}</template>
+                <template #unit>days</template>
+                <template #description>This month, you workout {{ archivement.workoutDays }} days</template>
             </ArchivementItem>
         </div>
 
         <div class="flex gap-6 flex-1">
             <!-- Weight level on ... (the most popular exercise or the most current exercise) -->
-            <ArchivementItem>
+            <ArchivementItem :highlighted="false">
                 <template #title>{{ archivement.mostPopularExerciseComparison.exerciseName }}</template>
+                <template #icon><font-awesome-icon :icon="['fas', 'star']" size="xl" /></template>
                 <template #content>
-                    {{ archivement.mostPopularExerciseComparison.comparison.direction }}
+                    <div v-if="archivement.mostPopularExerciseComparison.comparison.direction === 'increase'">
+                        <font-awesome-icon :icon="['fas', 'up-long']" size="xs" class="text-emerald-400" />
+                    </div>
+                    <div v-else-if="archivement.mostPopularExerciseComparison.comparison.direction === 'decrease'">
+                        <font-awesome-icon :icon="['fas', 'down-long']" size="xs" class="text-red-400" />
+                    </div>
+                    <div v-else></div>
                     {{ archivement.mostPopularExerciseComparison.comparison.value }}
-                    {{ archivement.mostPopularExerciseComparison.comparison.metric }}
                 </template>
+                <template #unit>{{ archivement.mostPopularExerciseComparison.comparison.metric }}</template>
+                <template #description>As the previous result</template>
             </ArchivementItem>
 
-            <!--  -->
-            <ArchivementItem>
-                <template #title>Exercises this week</template>
+            <ArchivementItem :highlighted="false">
+                <template #title>This week</template>
+                <template #icon><font-awesome-icon :icon="['fas', 'chart-simple']" size="xl" /></template>
                 <template #content>{{ archivement.totalExerciseThisWeek }}</template>
+                <template #unit>exercises</template>
+                <template #description>This week, you have done {{ archivement.totalExerciseThisWeek }} exercises</template>
             </ArchivementItem>
         </div>
     </div>

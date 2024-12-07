@@ -12,10 +12,10 @@ import { library } from '@fortawesome/fontawesome-svg-core'
 import { FontAwesomeIcon } from '@fortawesome/vue-fontawesome'
 
 /* import specific icons */
-import { faHome, faGear, faUser, faClockRotateLeft, faRightFromBracket, faDumbbell, faXmark } from '@fortawesome/free-solid-svg-icons'
+import { faHome, faGear, faUser, faClockRotateLeft, faRightFromBracket, faDumbbell, faXmark, faFire, faCalendarDays, faStar, faChartSimple, faUpLong, faDownLong } from '@fortawesome/free-solid-svg-icons'
 
 /* add icons to the library */
-library.add(faHome, faGear, faUser, faClockRotateLeft, faRightFromBracket, faDumbbell, faXmark) 
+library.add(faHome, faGear, faUser, faClockRotateLeft, faRightFromBracket, faDumbbell, faXmark, faFire, faCalendarDays, faStar, faChartSimple, faUpLong, faDownLong) 
 
 
 const app = createApp(App)
