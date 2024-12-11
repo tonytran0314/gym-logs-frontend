@@ -18,8 +18,8 @@ export const useArchivementStore = defineStore('archivementStore', () => {
     /* -------------------------------------------------------------------------- */
     const getStreak = async () => {
         try {
-            const res = await api.get('/archivement/streak')
-            streak.value = res.data.current_streak
+            const res = await api.get('/stats/streak')
+            streak.value = res.data.data
         } catch (error) {
             console.log(error)
         }
@@ -27,8 +27,8 @@ export const useArchivementStore = defineStore('archivementStore', () => {
 
     const getWorkoutDays = async () => {
         try {
-            const res = await api.get('/archivement/workout-days')
-            workoutDays.value = res.data.workoutDays
+            const res = await api.get('/stats/workout-days')
+            workoutDays.value = res.data.data
         } catch (error) {
             console.log(error)
         }
@@ -36,8 +36,8 @@ export const useArchivementStore = defineStore('archivementStore', () => {
 
     const getMostPopularExerciseComparison = async () => {
         try {
-            const res = await api.get('/archivement/popular-exercise-comparison')
-            mostPopularExerciseComparison.value = res.data
+            const res = await api.get('/stats/most-popular-exercise-analysis')
+            mostPopularExerciseComparison.value = res.data.data
         } catch (error) {
             console.log(error)
         }
@@ -45,8 +45,8 @@ export const useArchivementStore = defineStore('archivementStore', () => {
 
     const getTotalExerciseThisWeek = async () => {
         try {
-            const res = await api.get('/archivement/total-exercise-this-week')
-            totalExerciseThisWeek.value = res.data.totalExercises
+            const res = await api.get('/stats/total-exercise-this-week')
+            totalExerciseThisWeek.value = res.data.data
         } catch (error) {
             console.log(error)
         }

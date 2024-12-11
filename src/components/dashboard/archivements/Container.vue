@@ -38,7 +38,7 @@
 
         <div class="flex gap-6 flex-1">
             <!-- Weight level on ... (the most popular exercise or the most current exercise) -->
-            <ArchivementItem :highlighted="false">
+            <ArchivementItem v-if="archivement.mostPopularExerciseComparison !== null" :highlighted="false">
                 <template #title>{{ archivement.mostPopularExerciseComparison.exerciseName }}</template>
                 <template #icon><font-awesome-icon :icon="['fas', 'star']" size="xl" /></template>
                 <template #content>
@@ -52,6 +52,18 @@
                     {{ archivement.mostPopularExerciseComparison.comparison.value }}
                 </template>
                 <template #unit>{{ archivement.mostPopularExerciseComparison.comparison.metric }}</template>
+                <template #description>As the previous result</template>
+            </ArchivementItem>
+            <ArchivementItem v-else :highlighted="false">
+                <template #title>Biceps Curl</template>
+                <template #icon><font-awesome-icon :icon="['fas', 'star']" size="xl" /></template>
+                <template #content>
+                    <div>
+                        <font-awesome-icon :icon="['fas', 'up-long']" size="xs" class="text-emerald-400" />
+                    </div>
+                    <div>0</div>
+                </template>
+                <template #unit>reps</template>
                 <template #description>As the previous result</template>
             </ArchivementItem>
 

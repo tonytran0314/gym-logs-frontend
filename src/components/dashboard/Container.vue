@@ -10,11 +10,11 @@
 
     <!-- CHARTS -->
     <!-- Nhìn chart cũng không aesthetic lắm, cân nhắc thay chart khác -->
-        <!-- <Suspense>
+        <Suspense>
             <Archivement />
             <template #fallback>Loading archievement ...</template>
         </Suspense>
-        <div class="flex gap-6 flex-wrap w-full">
+        <!-- <div class="flex gap-6 flex-wrap w-full">
             <div class="w-full lg:flex-[2] bg-white dark:bg-gray-800 p-4 md:p-8 rounded-2xl">
                 <Suspense>
                 
