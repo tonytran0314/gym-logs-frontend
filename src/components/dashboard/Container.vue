@@ -14,11 +14,9 @@
         <Suspense>
             <div class="space-y-6">
                 <Archivement />
-                <div class="flex gap-6 flex-wrap w-full">
-                    <div class="w-full lg:flex-[2] bg-white dark:bg-gray-800 p-4 md:p-8 rounded-2xl"><LineChart /></div>
-                    <div class="w-full flex lg:flex-1 flex-col gap-6">
-                        <div class="bg-white dark:bg-gray-800 p-8 rounded-2xl"><PieChart /></div>
-                    </div>
+                <div class="flex gap-6 w-full ">
+                    <div class="w-2/3 bg-white dark:bg-gray-800 rounded-2xl p-8 flex-grow"><LineChart /></div>
+                    <div class="w-1/3 bg-white dark:bg-gray-800 rounded-2xl p-8 flex-grow"><PieChart /></div>
                 </div>
 
                 <div class="bg-white p-8 rounded-2xl dark:bg-gray-800 dark:text-blue-50">

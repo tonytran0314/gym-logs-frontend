@@ -18,11 +18,11 @@
   await chart.getPieData()
 
   const chartData = {
-    labels: chart.pieChartData.muscle_groups,
+    labels: (chart.pieChartData === null) ? null : chart.pieChartData.muscle_groups,
     datasets: [
       {
         label: 'My Dataset',
-        data: chart.pieChartData.counts,
+        data: (chart.pieChartData === null) ? null : chart.pieChartData.counts,
         backgroundColor: ['#059669', '#10b981', '#34d399', '#6ee7b7', '#D1FAE5'],
         borderColor: ['rgba(255, 99, 132, 1)', 'rgba(54, 162, 235, 1)', 'rgba(255, 206, 86, 1)'],
         borderWidth: 0,
@@ -64,7 +64,17 @@
 </script>
 
 <template>
-    <div class="chart-container">
+    <div v-if="chart.pieChartData !== null" class="chart-container">
       <Pie :data="chartData" :options="chartOptions" />
+    </div>
+    
+    <div v-else class="flex flex-col items-center gap-8">
+      <div class="bg-blue-50 dark:bg-gray-700 rounded-full p-6">
+        <font-awesome-icon :icon="['fas', 'chart-pie']" class="text-gray-400 dark:text-gray-300 size-16" />
+      </div>
+      <div class="flex flex-col items-center gap-2 text-center">
+        <p class="text-gray-900 dark:text-blue-50 text-2xl font-bold">Not enough data for Muscle Proportions Chart</p>
+        <p class="text-gray-500 dark:text-gray-400 ">Please workout by clicking the Workout Now button on the right-top corner.</p>
+      </div>
     </div>
 </template>
