@@ -23,7 +23,7 @@ export const useExerciseStore = defineStore('exerciseStore', () => {
     const getMuscles = async () => {
         try {
             const result = await api.get('/muscles')
-            muscles.value = result.data
+            muscles.value = result.data.data
         } catch (error) {
             console.log(error)
         }
@@ -32,7 +32,7 @@ export const useExerciseStore = defineStore('exerciseStore', () => {
     const getExercises = async () => {
         try {
             const result = await api.get('/exercises?muscle_id=' + localStorage.getItem('muscle_id'))
-            exercises.value = result.data
+            exercises.value = result.data.data
         } catch (error) {
             console.log(error)
         }
