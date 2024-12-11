@@ -30,8 +30,8 @@
         borderWidth: 3,
         tension: 0.3, // Curved line effect
         fill: true,
-        pointBackgroundColor: '#059669',
-        pointBorderColor: '#fff',
+        pointBackgroundColor: document.documentElement.classList.contains('dark') ? '#a7f3d0' : '#059669',
+        pointBorderColor: document.documentElement.classList.contains('dark') ? '#1f2937' : '#fff',
         pointRadius: 8,
       },
     ],
@@ -58,20 +58,23 @@
           display: false,
         },
         ticks: {
-            display: true
+            display: true,
+            color: document.documentElement.classList.contains('dark') ? '#9ca3af' : '#6b7280'
         },
       },
       y: {
         display: true,
-        // beginAtZero: true,
+        beginAtZero: true,
         title: {
             display: true,
         },
         grid: {
-          display: false
+          display: true,
+          color: document.documentElement.classList.contains('dark') ? '#374151' : '#e5e7eb'
         },
         ticks: {
-            display: true
+            display: true,
+            color: document.documentElement.classList.contains('dark') ? '#9ca3af' : '#6b7280'
         },
       },
     },
@@ -93,15 +96,16 @@
 </script>
   
 <template>
-  <div v-if="chart.lineChartData !== null" class="h-96 flex flex-col items-center">
+  <div v-if="chart.lineChartData !== null" class="h-full flex flex-col items-center">
     <Line ref="chartRef" :data="chartData" :options="chartOptions" />
-    <div class="text-lg flex gap-10">
-      <!-- <span>Total weight lifted in lbs:</span> -->
-      <div class="flex gap-10">
-        <select v-model="selectedExercise" @change="updateChart">
+    <div class="text-lg flex gap-2 items-center">
+      <span class="text-sm text-gray-900 dark:text-blue-50">Total weight lifted in lbs of</span>
+      <div class="flex gap-2 items-center">
+        <select v-model="selectedExercise" @change="updateChart" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-emerald-600 focus:border-emerald-600 block w-full p-2 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-emerald-600 dark:focus:border-emerald-600">
           <option v-for="exercise in chart.lineChartData.exercises" :key="exercise.id" :value="exercise.id">{{ exercise.name }}</option>
         </select>
-        <select v-model="selectedPeriod" @change="updateChart">
+        <span class="text-sm text-gray-900 dark:text-blue-50">in</span>
+        <select v-model="selectedPeriod" @change="updateChart" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-emerald-600 focus:border-emerald-600 block w-full p-2 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-emerald-600 dark:focus:border-emerald-600">
           <option v-for="period in chart.lineChartData.periods" :key="period.value" :value="period.value">{{ period.label }}</option>
         </select>
       </div>

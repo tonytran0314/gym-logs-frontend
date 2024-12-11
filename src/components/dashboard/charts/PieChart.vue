@@ -32,21 +32,22 @@
   
   const chartOptions = {
     responsive: true,
-    maintainAspectRatio: false,
+    maintainAspectRatio: true,
     plugins: {
       legend: {
         display: false,
       },
       title: {
         display: true,
-        text: 'The distribution ratio of muscle groups',
+        text: 'Muscle Groups',
         font: {
-          size: 20,
+          size: 18,
           weight: 'bold',
         },
         padding: {
           bottom: 20,
         },
+        color: document.documentElement.classList.contains('dark') ? '#eff6ff' : '#6b7280'
       },
       tooltip: {
         callbacks: {
@@ -64,7 +65,7 @@
 </script>
 
 <template>
-    <div v-if="chart.pieChartData !== null" class="chart-container">
+    <div v-if="chart.pieChartData !== null" class="flex justify-center items-center h-full">
       <Pie :data="chartData" :options="chartOptions" />
     </div>
     
@@ -73,7 +74,7 @@
         <font-awesome-icon :icon="['fas', 'chart-pie']" class="text-gray-400 dark:text-gray-300 size-16" />
       </div>
       <div class="flex flex-col items-center gap-2 text-center">
-        <p class="text-gray-900 dark:text-blue-50 text-2xl font-bold">Not enough data for Muscle Proportions Chart</p>
+        <p class="text-gray-900 dark:text-blue-50 text-2xl font-bold">Not enough data for Muscle Groups Chart</p>
         <p class="text-gray-500 dark:text-gray-400 ">Please workout by clicking the Workout Now button on the right-top corner.</p>
       </div>
     </div>
