@@ -33,8 +33,8 @@ export const useProfileStore = defineStore('profileStore', () => {
         try {
             const res = await api.get('/profile')
 
-            user.fullname = res.data.name
-            user.email = res.data.email
+            user.fullname = res.data.data.name
+            user.email = res.data.data.email
         } catch (error) {
             console.log(error)
         }
