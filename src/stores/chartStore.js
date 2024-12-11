@@ -17,8 +17,8 @@ export const useChartStore = defineStore('chartStore', () => {
     /* -------------------------------------------------------------------------- */
     const getLineData = async () => {
         try {
-            const res = await api.get('/chart/weight-level')
-            lineChartData.value = res.data
+            const res = await api.get('/charts/weight-levels?periodInMonths=1')
+            lineChartData.value = res.data.data
         } catch (error) {
             console.log(error)
         }
@@ -26,8 +26,8 @@ export const useChartStore = defineStore('chartStore', () => {
 
     const getPieData = async () => {
         try {
-            const res = await api.get('/chart/muscle-proportions')
-            pieChartData.value = res.data
+            const res = await api.get('/charts/muscle-proportions')
+            pieChartData.value = res.data.data
         } catch (error) {
             console.log(error)
         }
@@ -35,19 +35,13 @@ export const useChartStore = defineStore('chartStore', () => {
 
     const updateLineChart = async (newExercise, newPeriod) => {
         try {
-            const path = '/chart/weight-level/' + newExercise + '/' + newPeriod
+            const path = `/charts/weight-levels?exercise=${newExercise}&periodInMonths=${newPeriod}`
             const res = await api.get(path)
-            
-            updatedChart.value = res.data
+            updatedChart.value = res.data.data
         } catch (error) {
             console.log(error)
         }
     }
-
-
-    /* -------------------------------------------------------------------------- */
-    /*                                LOCAL METHODS                               */
-    /* -------------------------------------------------------------------------- */
 
 
 
