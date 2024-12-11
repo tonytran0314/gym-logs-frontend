@@ -10,7 +10,7 @@
 
     <!-- CHARTS -->
     <!-- Nhìn chart cũng không aesthetic lắm, cân nhắc thay chart khác -->
-        <Suspense>
+        <!-- <Suspense>
             <Archivement />
             <template #fallback>Loading archievement ...</template>
         </Suspense>
@@ -35,7 +35,7 @@
                     </Suspense>
                 </div>
             </div>
-        </div>
+        </div> -->
 
     
 

@@ -17,8 +17,7 @@ export const useHistoryStore = defineStore('historyStore', () => {
     const get = async () => {
         try {
             const res = await api.get('/history')
-            records.value = res.data
-            console.log(records.value)
+            records.value = res.data.data
         } catch (error) {
             console.log(error)
         }
