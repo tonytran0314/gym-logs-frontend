@@ -23,7 +23,8 @@
                     <slot name="unit"></slot>
                 </div>
             </div>
-            <div class="text-sm">
+            <div class="text-sm"
+                :class="props.highlighted ? 'text-white' : 'text-gray-500 dark:text-gray-400' ">
                 <slot name="description"></slot>
             </div>
         </div>
