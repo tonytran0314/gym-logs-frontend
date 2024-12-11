@@ -113,31 +113,12 @@ const routes = [
       {
         path: 'onset',
         name: 'On Set Screen',
-        component: () => import('@/components/workout/OnSet.vue'),
-        beforeEnter: async (to, from, next) => {
-          try {
-            const res = await api.get('/is-workingout')
-            if(res.data.isWorkingout) { next() } 
-            else { next({ name: 'Home' }) }
-          } catch (error) {
-            console.log(error) 
-          }
-        },
+        component: () => import('@/components/workout/OnSet.vue')
       },
       {
         path: 'rest',
         name: 'Rest Screen',
-        component: () => import('@/components/workout/Rest.vue'),
-        beforeEnter: async (to, from, next) => {
-          try {
-            const res = await api.get('/is-workingout')
-            
-            if(res.data.isWorkingout) { next() } 
-            else { next({ name: 'Home' }) }
-          } catch (error) {
-            console.log(error) 
-          }
-        },
+        component: () => import('@/components/workout/Rest.vue')
       },
     ],
   },

@@ -42,26 +42,23 @@ export const useExerciseStore = defineStore('exerciseStore', () => {
         try {
             const exerciseID =  localStorage.getItem('exercise_id')
             const res = await api.get('/current-exercise?exercise_id=' + exerciseID)
-            currentExercise.value = res.data
+            currentExercise.value = res.data.data
         } catch (error) {
             console.log(error)
         }
     }
 
     const start = async () => {
-        // tempStore()
-        await enableWorkoutStatus()
         goToOnSetScreen()
     }
 
     const stop = async () => {
-        await disableWorkoutStatus()
         goToHomePage()
     }
 
     const saveWorkoutSet = async (set) => {
         try {
-            await api.post('/save-set', set)
+            await api.post('/set', set)
         } catch (error) {
             console.log(error)
         }
@@ -88,26 +85,7 @@ export const useExerciseStore = defineStore('exerciseStore', () => {
         router.push({ name: 'Home' })
     }
 
-    const tempStore = () => {
-        localStorage.setItem('muscle_id', record.muscle)
-        localStorage.setItem('exercise_id', record.exercise)
-    }
 
-    const enableWorkoutStatus = async () => {
-        try {
-            await api.put('/start-workout')
-        } catch (error) {
-            console.log(error)
-        }
-    }
-
-    const disableWorkoutStatus = async () => {
-        try {
-            await api.put('/stop-workout')
-        } catch (error) {
-            console.log(error)
-        }
-    }
 
     /* -------------------------------------------------------------------------- */
     /*                                   RETURN                                   */
