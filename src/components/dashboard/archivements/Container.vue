@@ -36,8 +36,7 @@
         <div class="flex flex-col xl:flex-row gap-6 flex-1">
             <!-- Weight level on ... (the most popular exercise or the most current exercise) -->
             <ArchivementItem v-if="archivement.mostPopularExerciseComparison !== null" :highlighted="false">
-                <template #title>archivement most Popular Exercise Comparison exerciseName</template>
-                <!-- <template #title>{{ archivement.mostPopularExerciseComparison.exerciseName }}</template> -->
+                <template #title>{{ archivement.mostPopularExerciseComparison.exerciseName }}</template>
                 <template #icon><font-awesome-icon :icon="['fas', 'star']" class="size-5 2xl:size-7" /></template>
                 <template #content>
                     <div v-if="archivement.mostPopularExerciseComparison.comparison.direction === 'increase'">
