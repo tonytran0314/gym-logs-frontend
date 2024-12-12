@@ -3,7 +3,7 @@
 </script>
 
 <template>
-    <div class="w-full h-dvh flex items-center justify-center bg-blue-50 dark:bg-gray-900">
+    <div class="w-full h-screen flex items-start lg:items-center justify-center p-4 overflow-y-auto bg-blue-50 dark:bg-gray-900">
         <Suspense>
             <router-view></router-view>
 

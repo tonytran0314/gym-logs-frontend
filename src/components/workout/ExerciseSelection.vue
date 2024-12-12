@@ -11,15 +11,10 @@ import { onMounted } from 'vue';
       router.push({ name: 'Muscle Selection Screen' })
     }
 
-    const startExercise = () => { 
-        exercise.start()
-    }
-
-    const chooseThisExercise = (exerciseID) => {
+    const startExercise = (exerciseID) => { 
       exercise.tempStoreExercise(exerciseID)
+      exercise.start()
     }
-
-    const isChosenExercise = (exerciseID) => exercise.record.exercise === exerciseID 
 
     const exit = () => {
       router.push({ name: 'Home' })
@@ -36,26 +31,22 @@ import { onMounted } from 'vue';
 
   <div class="flex flex-col items-center gap-10">
     <div class="space-y-4">
-      <div class="flex justify-end">
+      <div class="flex justify-between items-center">
+        <div @click="backToPreviousStep" class="size-12 rounded-full flex justify-center items-center cursor-pointer hover:bg-gray-200 dark:hover:bg-gray-800">
+          <font-awesome-icon :icon="['fas', 'arrow-left']" class="text-gray-900 dark:text-blue-50" size="lg" />
+        </div>
         <CloseButton @click="exit" />
       </div>
       <h3 class="text-3xl text-center font-bold text-gray-900 dark:text-blue-50">Choose the exercise you want to workout today</h3>
     </div>
 
-    <div class="space-y-12">
-      <div class="flex flex-wrap justify-center gap-6 h-72">
-        <div 
-          v-for="exercise in exercise.exercises" 
-          @click="chooseThisExercise(exercise.id)" 
-          :key="exercise.id"  
-          class="bg-white text-gray-900 dark:text-blue-50 dark:bg-gray-800 rounded-xl py-6 px-10 hover:cursor-pointer border-2 hover:border-emerald-600 dark:hover:border-emerald-600 capitalize" 
-          :class="isChosenExercise(exercise.id) ? 'border-emerald-600' : 'border-white dark:border-gray-800' ">
-          {{ exercise.name }}
-        </div>
-      </div>
-      <div class="flex justify-end gap-6">
-        <div @click="backToPreviousStep" class="text-white dark:text-blue-50 cursor-pointer bg-gray-500 px-6 py-2 rounded-lg hover:bg-gray-600">Back</div>
-        <div @click="startExercise" class="text-white dark:text-blue-50 cursor-pointer bg-emerald-600 px-6 py-2 rounded-lg hover:bg-emerald-700">Start Exercise</div>
+    <div class="flex flex-wrap justify-center gap-6 h-72">
+      <div 
+        v-for="exercise in exercise.exercises" 
+        @click="startExercise(exercise.id)" 
+        :key="exercise.id"  
+        class="bg-white shadow-md text-gray-900 dark:text-blue-50 dark:bg-gray-800 rounded-xl py-6 px-10 cursor-pointer capitalize hover:bg-emerald-600 hover:text-white dark:hover:bg-emerald-600 dark:hover:text-white">
+        {{ exercise.name }}
       </div>
     </div>
   </div>
