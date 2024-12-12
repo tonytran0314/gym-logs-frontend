@@ -122,6 +122,17 @@ const routes = [
       },
     ],
   },
+
+
+
+  /* -------------------------------------------------------------------------- */
+  /*                                  404 VIEW                                  */
+  /* -------------------------------------------------------------------------- */
+  {
+    path: '/:pathMatch(.*)*', // Catch-all route
+    name: 'Not Found',
+    component: () => import('@/components/not_found/Container.vue'), // Replace with your 404 component path
+  },
 ]
 
 
