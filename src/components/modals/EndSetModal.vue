@@ -44,7 +44,7 @@
     </div>
 
     <form @submit.prevent="saveThisSet" class="space-y-6">
-      <div class="flex gap-4">
+      <div class="flex flex-col gap-4 sm:flex-row">
         <Input
           v-model="set.weight_level"
           label="Weight level (lbs)"
