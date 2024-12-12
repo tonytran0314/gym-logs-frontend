@@ -6,7 +6,7 @@
 </script>
 
 <template>
-    <div class="bg-white dark:bg-gray-800 text-gray-900 dark:text-blue-50 p-8 rounded-2xl space-y-8">
+    <div class="bg-white dark:bg-gray-800 text-gray-900 dark:text-blue-50 p-8 rounded-2xl space-y-8 flex flex-col max-h-screen">
         <div class="space-y-2">
             <div class="flex flex-col gap-8">
                 <div class="flex items-center justify-between">
@@ -20,10 +20,10 @@
                 </div>
             </div>
         </div>
-        <div class="space-y-6">
+        <div class="space-y-6 overflow-y-auto">
             <div v-for="exercise in history.details.exercises" class="flex flex-col gap-6">
                 <div class="bg-gray-300 dark:bg-gray-600 w-full h-[1px]"></div>
-                <div class="flex items-start gap-6">
+                <div class="flex flex-col items-start gap-4 md:gap-6">
                     <div class="flex">
                         <p class="bg-emerald-600 text-white px-4 py-1 rounded-full capitalize">{{ exercise.muscle }}</p>
                     </div>
