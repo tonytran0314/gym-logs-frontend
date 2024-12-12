@@ -26,23 +26,28 @@
         <h1 class="text-4xl dark:text-blue-50">Profile</h1>
 
         <form @submit.prevent="updateProfile" class="space-y-8">
-            <Input
-                v-model="profile.user.fullname"
-                label="Fullname"
-                type="text"
-                name="fullname"
-                placeholder="Your full name" />
-            <Error v-show="profile.errors.fullname">{{ profile.errors.fullname }}</Error>
-            <Input
-                v-model="profile.user.email"
-                label="Email"
-                type="email"
-                name="email"
-                placeholder="name@mail.com" />
-            <Error v-show="profile.errors.email">{{ profile.errors.email }}</Error>
-            
-            <LoadingButton v-if="profile.isLoading" />
-            <Button v-else >Update Profile</Button>
+            <div>
+                <Input
+                    v-model="profile.user.fullname"
+                    label="Fullname"
+                    type="text"
+                    name="fullname"
+                    placeholder="Your full name" />
+                <Error v-show="profile.errors.fullname">{{ profile.errors.fullname }}</Error>
+            </div>
+            <div>
+                <Input
+                    v-model="profile.user.email"
+                    label="Email"
+                    type="email"
+                    name="email"
+                    placeholder="name@mail.com" />
+                <Error v-show="profile.errors.email">{{ profile.errors.email }}</Error>
+            </div>
+            <div>
+                <LoadingButton v-if="profile.isLoading" />
+                <Button v-else>Update Profile</Button>
+            </div>
         </form>
     </div>
 </template>
