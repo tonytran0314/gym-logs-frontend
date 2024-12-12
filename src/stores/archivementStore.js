@@ -52,10 +52,18 @@ export const useArchivementStore = defineStore('archivementStore', () => {
         }
     }
 
-
-    /* -------------------------------------------------------------------------- */
-    /*                                LOCAL METHODS                               */
-    /* -------------------------------------------------------------------------- */
+    const get = async () => {
+        try {
+            await Promise.all([
+                getStreak(),
+                getWorkoutDays(),
+                getMostPopularExerciseComparison(),
+                getTotalExerciseThisWeek()
+            ])
+        } catch (error) {
+            console.log(error)
+        }
+    }
 
 
 
@@ -67,9 +75,6 @@ export const useArchivementStore = defineStore('archivementStore', () => {
         workoutDays,
         mostPopularExerciseComparison,
         totalExerciseThisWeek,
-        getStreak,
-        getWorkoutDays,
-        getMostPopularExerciseComparison,
-        getTotalExerciseThisWeek
+        get
     }
 })

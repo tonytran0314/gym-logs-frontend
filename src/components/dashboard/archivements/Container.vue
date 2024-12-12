@@ -5,10 +5,7 @@
 
     const archivement = useArchivementStore()
 
-    await archivement.getStreak()
-    await archivement.getWorkoutDays()
-    await archivement.getMostPopularExerciseComparison()
-    await archivement.getTotalExerciseThisWeek()
+    await archivement.get()
 </script>
 
 <template>
