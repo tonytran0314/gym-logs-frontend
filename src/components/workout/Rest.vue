@@ -44,14 +44,14 @@
 </script>
 
 <template>
-    <div class="flex gap-8">
-        <RestIllustration />
+    <div class="flex gap-8 flex-col lg:flex-row items-center">
+        <RestIllustration class="w-40 md:w-52 lg:w-96" />
         <div class="bg-white dark:bg-gray-800 p-8 rounded-2xl flex flex-col items-center gap-10 justify-between">
-            <p class="text-gray-900 dark:text-blue-50 text-4xl font-bold">Take a short break ...</p>
-            <p class="text-gray-900 dark:text-blue-50 text-9xl">{{ restCountdown.minutes }}:{{ restCountdown.seconds }}</p>
+            <p class="text-gray-900 dark:text-blue-50 text-2xl sm:text-3xl lg:text-4xl font-bold">Take a short break ...</p>
+            <p class="text-gray-900 dark:text-blue-50 text-7xl sm:text-8xl lg:text-9xl">{{ restCountdown.minutes }}:{{ restCountdown.seconds }}</p>
 
 
-            <div class="flex gap-4">
+            <div class="flex flex-col-reverse md:flex-row gap-4">
                 <div @click="stopExercise" class="text-gray-900 dark:text-blue-50 cursor-pointer bg-gray-500 px-6 py-2 rounded-lg hover:bg-gray-600">Stop the Exercise</div>
                 <div @click="gotoNextSet" class="text-gray-900 dark:text-blue-50 cursor-pointer bg-emerald-600 px-6 py-2 rounded-lg hover:bg-emerald-700 disabled">Next Set</div>
             </div>
