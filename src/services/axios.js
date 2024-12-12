@@ -36,10 +36,3 @@ export const csrf = axios.create({
   withCredentials: true,
   withXSRFToken: true
 })
-
-export const quoteApi = axios.create({
-  baseURL: import.meta.env.VITE_QUOTE_API_URL,
-  headers: {
-    'X-Api-Key': import.meta.env.VITE_QUOTE_API_KEY
-  }
-})

@@ -3,7 +3,7 @@
     import { ref } from 'vue'
 
     const theme = useThemeStore()
-    const selectedTheme = localStorage.getItem('theme') ? ref(localStorage.getItem('theme')) : null
+    const selectedTheme = localStorage.getItem('theme') ? ref(localStorage.getItem('theme')) : ref('dark')
 
     const updateThemeMode = () => {
         theme.switchTo(selectedTheme.value)
