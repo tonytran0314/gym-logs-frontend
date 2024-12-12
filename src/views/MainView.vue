@@ -3,6 +3,8 @@
     
     import Button from '@/components/form/Button.vue'
     import NavBar from '@/components/navigation/NavBar.vue'
+    import UserStatus from '@/components/navigation/UserStatus.vue'
+    import UserStatusLoadingAnimation from '@/components/loading_animation/UserStatus.vue'
 
     const router = useRouter()
 
@@ -21,20 +23,11 @@
                 <div class="text-emerald-600 font-bold text-4xl">GYMLOGS</div>
                 <NavBar />
             </div>
-            
-            <!-- Put this in the mini navigation on avatar -->
-            <div class="flex space-x-2 relative">
-                <div class="size-12 rounded-full bg-gray-500"></div>
-                <div>
-                    <p class="font-bold pt-1 dark:text-blue-50">Huy Tran</p>
-                    <p class="text-sm text-gray-500 dark:text-gray-300 space-x-2 flex items-center">
-                        <span>Working out</span>
-                        <span class="inline-block size-3 rounded-full bg-emerald-300"></span>
-                    </p> 
-                    <!-- Sau chữ Đang tập luyện có dấu chấm xanh như FB, suy nghĩ xem không tập thì để chữ gì. Hoặc cho người ta tự custom như liên minh -->
-                </div>
-                <!-- Chỗ này có cái dấu 3 chấm hay mũi tên đi lên hoặc mũi tên chỉ bên phải gì đó, bấm vô nó mở menu nhỏ nhỏ -->
-            </div>
+            <Suspense>
+                <UserStatus />
+                <template #fallback><UserStatusLoadingAnimation /></template>
+            </Suspense>
+            <!-- <UserStatusLoadingAnimation /> -->
         </div>
 
 
