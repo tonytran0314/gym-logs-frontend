@@ -14,14 +14,14 @@
         <Suspense>
             <div class="space-y-6">
                 <Archivement />
-                <div class="flex gap-6 w-full h-80">
-                    <div class="w-3/4 h-full bg-white dark:bg-gray-800 rounded-2xl pt-8 pr-8 pl-8 pb-14 flex-grow"><LineChart /></div>
-                    <div class="w-1/4 h-full bg-white dark:bg-gray-800 rounded-2xl p-8 flex-grow"><PieChart /></div>
+                <div class="flex flex-col md:flex-row gap-6 w-full h-80">
+                    <div class="w-full md:w-3/4 h-full bg-white dark:bg-gray-800 rounded-2xl pt-8 pr-8 pl-8 pb-14"><LineChart /></div>
+                    <div class="w-full md:w-1/4 h-full bg-white dark:bg-gray-800 rounded-2xl p-8"><PieChart /></div>
                 </div>
 
-                <div class="bg-white p-8 rounded-2xl dark:bg-gray-800 dark:text-blue-50">
+                <!-- <div class="bg-white p-8 rounded-2xl dark:bg-gray-800 dark:text-blue-50">
                     <p>"I do a one-hour workout called Drenched, a cardio-boxing fitness routine, Monday through Friday. There are usually between twenty-five and fifty people there - everyone from stay-at-home moms and professional martial artists to teenagers and seniors. They play great dance music. When I can, I take two classes back-to-back." - Carrie Ann Inaba</p>
-                </div>
+                </div> -->
             </div>
             <template #fallback>
                 <DashboardLoadingAnimation />

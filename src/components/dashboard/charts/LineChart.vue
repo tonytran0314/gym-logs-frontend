@@ -73,8 +73,7 @@
           color: document.documentElement.classList.contains('dark') ? '#374151' : '#e5e7eb'
         },
         ticks: {
-            display: true,
-            color: document.documentElement.classList.contains('dark') ? '#9ca3af' : '#6b7280'
+            display: false,
         },
       },
     },
@@ -99,7 +98,7 @@
   <div v-if="chart.lineChartData !== null" class="h-full flex flex-col items-center">
     <Line ref="chartRef" :data="chartData" :options="chartOptions" />
     <div class="text-lg flex gap-2 items-center">
-      <span class="text-sm text-gray-900 dark:text-blue-50">Total weight lifted in lbs of</span>
+      <span class="hidden text-sm text-gray-900 dark:text-blue-50">Total weight lifted in lbs of</span>
       <div class="flex gap-2 items-center">
         <select v-model="selectedExercise" @change="updateChart" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-emerald-600 focus:border-emerald-600 block w-full p-2 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-emerald-600 dark:focus:border-emerald-600">
           <option v-for="exercise in chart.lineChartData.exercises" :key="exercise.id" :value="exercise.id">{{ exercise.name }}</option>
