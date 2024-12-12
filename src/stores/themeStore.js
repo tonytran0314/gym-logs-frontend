@@ -11,16 +11,18 @@ export const useThemeStore = defineStore('themeStore', () => {
     /* -------------------------------------------------------------------------- */
     /*                                   METHODS                                  */
     /* -------------------------------------------------------------------------- */
-    const toggle = () => {
+    const switchTo = (selectedTheme) => {
         const isDark = document.documentElement.classList.contains('dark')
 
-        if (isDark) {
+        if (isDark && selectedTheme === 'light') {
             document.documentElement.classList.remove('dark');
-            localStorage.setItem('theme', 'light');
-        } else {
-            document.documentElement.classList.add('dark');
-            localStorage.setItem('theme', 'dark');
         }
+
+        if(!isDark && selectedTheme === 'dark') {
+            document.documentElement.classList.add('dark');
+        }
+
+        localStorage.setItem('theme', selectedTheme);
     }
 
     const initialize = () => {
@@ -37,7 +39,7 @@ export const useThemeStore = defineStore('themeStore', () => {
     /*                                   RETURN                                   */
     /* -------------------------------------------------------------------------- */
     return {
-        toggle,
+        switchTo,
         initialize
     }
 
