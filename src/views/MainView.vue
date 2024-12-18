@@ -42,19 +42,21 @@
             </Suspense>
         </div>
         <!-- MENU FOR SMALL SCREENS -->
-        <div v-if="navigation.isSideNavigationOpen" class="absolute z-[99] lg:static lg:hidden h-screen w-64 p-8 flex flex-col justify-between bg-white dark:bg-gray-800">
-            <div class="space-y-8">
-                <div class="flex flex-col gap-4">
-                    <div @click="closeSideMenu" class="flex justify-end"><CloseButton /></div>
-                    <div class="text-emerald-600 font-bold text-4xl lg:hidden">GYMLOGS</div>
+        <Transition name="side-menu">
+            <div v-if="navigation.isSideNavigationOpen" class="absolute z-[99] lg:static lg:hidden h-screen w-64 p-8 flex flex-col justify-between bg-white dark:bg-gray-800">
+                <div class="space-y-8">
+                    <div class="flex flex-col gap-4">
+                        <div @click="closeSideMenu" class="flex justify-end"><CloseButton /></div>
+                        <div class="text-emerald-600 font-bold text-4xl lg:hidden">GYMLOGS</div>
+                    </div>
+                    <NavBar />
                 </div>
-                <NavBar />
+                <Suspense>
+                    <UserStatus />
+                    <template #fallback><UserStatusLoadingAnimation /></template>
+                </Suspense>
             </div>
-            <Suspense>
-                <UserStatus />
-                <template #fallback><UserStatusLoadingAnimation /></template>
-            </Suspense>
-        </div>
+        </Transition>
 
         <!-- RIGHT COLUMN -->
         <div class="flex-grow overflow-auto bg-blue-50 dark:bg-gray-900">
@@ -74,3 +76,19 @@
         </div>
     </div>
 </template>
+
+<style scoped>
+    .side-menu-enter-active, 
+    .side-menu-leave-active {
+        transition: .5s ease all;
+    }
+
+    .side-menu-enter-from,
+    .side-menu-leave-to {
+        transform: translate(-256px);
+    }
+
+    .side-menu-enter-to {
+        transform: translate(0);
+    }
+</style>
