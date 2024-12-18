@@ -112,12 +112,12 @@
   </div>
   
   <div v-else class="flex flex-col h-full items-center justify-center gap-8">
-    <div class="bg-blue-50 dark:bg-gray-700 rounded-full p-7">
-      <font-awesome-icon :icon="['fas', 'chart-line']" class="text-gray-400 dark:text-gray-300 size-16" />
+    <div class="bg-blue-50 dark:bg-gray-700 rounded-full p-5">
+      <font-awesome-icon :icon="['fas', 'chart-line']" class="text-gray-400 dark:text-gray-300 size-11" />
     </div>
     <div class="flex flex-col items-center gap-2">
-      <p class="text-gray-900 dark:text-blue-50 text-2xl font-bold">Not enough data for Weight Levels Chart</p>
-      <p class="text-gray-500 dark:text-gray-400 ">Please workout by clicking the Workout Now button on the right-top corner.</p>
+      <p class="text-gray-900 dark:text-blue-50 text-lg font-bold text-center">Not enough data <br>for Weight Levels Chart</p>
+      <p class="hidden xl:block text-gray-500 dark:text-gray-400 text-sm">Please workout by clicking the Workout Now button on the right-top corner.</p>
     </div>
   </div>
 </template>
