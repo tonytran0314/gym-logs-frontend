@@ -6,6 +6,16 @@ const isValidPage = (value) => {
   return Number.isInteger(pageNumber) && pageNumber > 0;
 };
 
+const authenticationCheck = async () => {
+  try {
+    const res = await api.get('/is-authenticated')
+
+    return res.data.isAuthenticated
+  } catch (error) {
+    console.log(error) 
+  }
+}
+
 const routes = [
 
   /* -------------------------------------------------------------------------- */
@@ -14,15 +24,12 @@ const routes = [
   {
     path: '/',
     component: () => import('@/views/MainView.vue'),
-    beforeEnter: async (to, from, next) => {
-      try {
-        const res = await api.get('/is-authenticated')
-        
-        if(res.data.isAuthenticated) { next() } 
-        else { next({ name: 'Login' }) }
-      } catch (error) {
-        console.log(error) 
-      }
+    beforeEnter: (to, from, next) => {
+      authenticationCheck()
+      .then((isAuthenticated) => {
+        if(!isAuthenticated) { next({ name: 'Login'}) } 
+        else { next() }
+      })
     },
     children: [
       {
@@ -49,9 +56,9 @@ const routes = [
     
           // If `page` is not provided or invalid, redirect to page 1
           if (!page || !isValidPage(page)) {
-            next({ name: 'History', query: { page: 1 } });
+            next({ name: 'History', query: { page: 1 } })
           } else {
-            next(); // Allow navigation
+            next() // Allow navigation
           }
         },
       },
@@ -66,15 +73,12 @@ const routes = [
   {
     path: '/login',
     component: () => import('@/views/AuthView.vue'),
-    beforeEnter: async (to, from, next) => {
-      try {
-        const res = await api.get('/is-authenticated')
-        
-        if(res.data.isAuthenticated) { next({ name: 'Home' }) } 
+    beforeEnter: (to, from, next) => {
+      authenticationCheck()
+      .then((isAuthenticated) => {
+        if(isAuthenticated) { next({ name: 'Home'}) } 
         else { next() }
-      } catch (error) {
-        console.log(error) 
-      }
+      })
     },
     children: [
       {
@@ -87,15 +91,12 @@ const routes = [
   { 
     path: '/signup', 
     component: () => import('@/views/AuthView.vue'),
-    beforeEnter: async (to, from, next) => {
-      try {
-        const res = await api.get('/is-authenticated')
-        
-        if(res.data.isAuthenticated) { next({ name: 'Home' }) } 
+    beforeEnter: (to, from, next) => {
+      authenticationCheck()
+      .then((isAuthenticated) => {
+        if(isAuthenticated) { next({ name: 'Home'}) } 
         else { next() }
-      } catch (error) {
-        console.log(error) 
-      }
+      })
     },
     children: [
       {
@@ -114,6 +115,13 @@ const routes = [
   {
     path: '/workout',
     component: () => import('@/views/WorkoutView.vue'),
+    beforeEnter: (to, from, next) => {
+      authenticationCheck()
+      .then((isAuthenticated) => {
+        if(!isAuthenticated) { next({ name: 'Login'}) } 
+        else { next() }
+      })
+    },
     children: [
       {
         path: '',
@@ -144,9 +152,9 @@ const routes = [
   /*                                  404 VIEW                                  */
   /* -------------------------------------------------------------------------- */
   {
-    path: '/:pathMatch(.*)*', // Catch-all route
+    path: '/:pathMatch(.*)*',
     name: 'Not Found',
-    component: () => import('@/components/not_found/Container.vue'), // Replace with your 404 component path
+    component: () => import('@/components/not_found/Container.vue'),
   },
 ]
 
