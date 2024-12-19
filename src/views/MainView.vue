@@ -1,6 +1,7 @@
 <script setup>
     import { useRouter } from 'vue-router'
     import { useNavigationStore } from '@/stores/navigationStore'
+    import { useNotificationStore } from '@/stores/notificationStore'
     
     import Button from '@/components/form/Button.vue'
     import NavBar from '@/components/navigation/NavBar.vue'
@@ -10,6 +11,7 @@
 
     const router = useRouter()
     const navigation = useNavigationStore()
+    const notification = useNotificationStore()
 
     const selectMuscleAndExercise = () => {
         router.push({ name: 'Muscle Selection Screen' })
@@ -21,6 +23,10 @@
 
     const closeSideMenu = () => {
         navigation.close()
+    }
+
+    const toggleNotification = () => {
+        notification.toggle()
     }
 </script>
 
@@ -78,7 +84,13 @@
                 </Button>
                 
                 <div class="flex items-center gap-1 sm:gap-3 md:gap-5 lg:gap-6">
-                    <font-awesome-icon :icon="['fas', 'bell']" class="size-4 md:size-5 text-gray-900 dark:text-blue-50 p-2 rounded-full hover:bg-emerald-100 cursor-pointer hover:text-emerald-6 00 dark:hover:text-emerald-600" />
+                    <div @click="toggleNotification" class="relative">
+                        <font-awesome-icon :icon="['fas', 'bell']" class="size-4 md:size-5 text-gray-900 dark:text-blue-50 p-2 rounded-full hover:bg-emerald-100 cursor-pointer hover:text-emerald-6 00 dark:hover:text-emerald-600" />
+                        <div v-if="notification.isOpen" class="h-auto min-w-56 absolute right-0 top-10 rounded-lg bg-white border border-emerald-600 dark:bg-gray-800 p-4 shadow-lg space-y-4">
+                            <div class="text-lg text-gray-900 dark:text-blue-50">Notifications</div>
+                            <div class="text-gray-700 dark:text-gray-400">Coming soon ...</div>
+                        </div>
+                    </div>
                     <Suspense>
                         <UserStatus />
                         <template #fallback>
