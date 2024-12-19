@@ -75,7 +75,7 @@
       </div>
       <div class="flex flex-col items-center gap-2 text-center">
         <p class="text-gray-900 dark:text-blue-50 text-lg font-bold">Not enough data <br> for Muscle Groups Chart</p>
-        <p class="hidden xl:block text-gray-500 dark:text-gray-400 text-sm">Please workout by clicking the Workout Now button on the right-top corner.</p>
+        <p class="hidden xl:block text-gray-500 dark:text-gray-400 text-sm">Please workout by clicking the Workout Now button on the top.</p>
       </div>
     </div>
 </template>
