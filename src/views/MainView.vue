@@ -42,21 +42,38 @@
             </Suspense>
         </div>
         <!-- MENU FOR SMALL SCREENS -->
-        <Transition name="side-menu">
-            <div v-if="navigation.isSideNavigationOpen" class="absolute z-[99] lg:static lg:hidden h-screen w-64 p-8 flex flex-col justify-between bg-white dark:bg-gray-800">
-                <div class="space-y-8">
-                    <div class="flex flex-col gap-4">
-                        <div @click="closeSideMenu" class="flex justify-end"><CloseButton /></div>
-                        <div class="text-emerald-600 font-bold text-4xl lg:hidden">GYMLOGS</div>
-                    </div>
-                    <NavBar />
+        <div>
+            <Transition name="fade-bg">
+                <div 
+                    v-if="navigation.isSideNavigationOpen" 
+                    class="fixed inset-0 z-[98] bg-black bg-opacity-50 lg:hidden"
+                    @click="closeSideMenu">
                 </div>
-                <Suspense>
-                    <UserStatus />
-                    <template #fallback><UserStatusLoadingAnimation /></template>
-                </Suspense>
-            </div>
-        </Transition>
+            </Transition>
+            
+            <Transition name="side-menu">
+                <div 
+                    v-if="navigation.isSideNavigationOpen" 
+                    class="fixed z-[99] top-0 left-0 h-full w-64 bg-white dark:bg-gray-800 p-8 flex flex-col justify-between lg:hidden"
+                    @click.stop>
+                    <div class="space-y-8">
+                        <div class="flex flex-col gap-4">
+                            <div class="flex justify-end">
+                                <CloseButton  @click="closeSideMenu" />
+                            </div>
+                            <div class="text-emerald-600 font-bold text-4xl">GYMLOGS</div>
+                        </div>
+                        <NavBar />
+                    </div>
+                    <Suspense>
+                        <UserStatus />
+                        <template #fallback>
+                            <UserStatusLoadingAnimation />
+                        </template>
+                    </Suspense>
+                </div>
+            </Transition>
+        </div>
 
         <!-- RIGHT COLUMN -->
         <div class="flex-grow overflow-auto bg-blue-50 dark:bg-gray-900">
@@ -90,5 +107,15 @@
 
     .side-menu-enter-to {
         transform: translate(0);
+    }
+
+    .fade-bg-enter-active,
+    .fade-bg-leave-active {
+    transition: opacity 0.3s ease;
+    }
+
+    .fade-bg-enter-from,
+    .fade-bg-leave-to {
+    opacity: 0;
     }
 </style>
