@@ -85,7 +85,7 @@
                 
                 <div class="flex items-center gap-1 sm:gap-3 md:gap-5 lg:gap-6">
                     <div @click="toggleNotification" class="relative">
-                        <font-awesome-icon :icon="['fas', 'bell']" class="size-4 md:size-5 text-gray-900 dark:text-blue-50 p-2 rounded-full hover:bg-emerald-100 cursor-pointer hover:text-emerald-6 00 dark:hover:text-emerald-600" />
+                        <font-awesome-icon :icon="['fas', 'bell']" class="size-4 md:size-5 text-gray-900 dark:text-blue-50 p-2 rounded-full hover:bg-emerald-100 cursor-pointer hover:text-emerald-6 00 hover:text-emerald-600 dark:hover:text-emerald-600" />
                         <div v-if="notification.isOpen" class="h-auto min-w-56 absolute right-0 top-10 rounded-lg bg-white border border-emerald-600 dark:bg-gray-800 p-4 shadow-lg space-y-4">
                             <div class="text-lg text-gray-900 dark:text-blue-50">Notifications</div>
                             <div class="text-gray-700 dark:text-gray-400">Coming soon ...</div>
