@@ -1,6 +1,11 @@
 import { createWebHistory, createRouter } from 'vue-router'
 import { api } from '@/services/axios.js'
 
+const isValidPage = (value) => {
+  const pageNumber = Number(value);
+  return Number.isInteger(pageNumber) && pageNumber > 0;
+};
+
 const routes = [
 
   /* -------------------------------------------------------------------------- */
@@ -39,6 +44,16 @@ const routes = [
         path: 'history',
         name: 'History',
         component: () => import('@/components/history/Container.vue'),
+        beforeEnter: (to, from, next) => {
+          const page = to.query.page;
+    
+          // If `page` is not provided or invalid, redirect to page 1
+          if (!page || !isValidPage(page)) {
+            next({ name: 'History', query: { page: 1 } });
+          } else {
+            next(); // Allow navigation
+          }
+        },
       },
     ],
   },

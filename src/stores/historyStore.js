@@ -14,9 +14,10 @@ export const useHistoryStore = defineStore('historyStore', () => {
     /* -------------------------------------------------------------------------- */
     /*                                   METHODS                                  */
     /* -------------------------------------------------------------------------- */
-    const get = async () => {
+    const get = async (page = 1) => {
         try {
-            const res = await api.get('/history')
+            const historyPath = `/history?page=${page}`
+            const res = await api.get(historyPath)
             records.value = res.data.data
         } catch (error) {
             console.log(error)
