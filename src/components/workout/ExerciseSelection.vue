@@ -17,7 +17,7 @@ import { onMounted } from 'vue';
     }
 
     const exit = () => {
-      router.push({ name: 'Home' })
+      router.push({ name: 'Dashboard' })
     }
 
     onMounted(() => {

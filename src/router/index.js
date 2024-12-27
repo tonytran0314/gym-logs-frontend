@@ -19,6 +19,24 @@ const authenticationCheck = async () => {
 const routes = [
 
   /* -------------------------------------------------------------------------- */
+  /*                                 GUEST VIEW                                 */
+  /* -------------------------------------------------------------------------- */
+  {
+    path: '/',
+    component: () => import('@/views/GuestView.vue'),
+    name: 'Guest',
+    beforeEnter: (to, from, next) => {
+      authenticationCheck()
+      .then((isAuthenticated) => {
+        if(isAuthenticated) { next({ name: 'Dashboard'}) } 
+        else { next() }
+      })
+    }
+  },
+
+
+  
+  /* -------------------------------------------------------------------------- */
   /*                                  MAIN VIEW                                 */
   /* -------------------------------------------------------------------------- */
   {
@@ -33,8 +51,8 @@ const routes = [
     },
     children: [
       {
-        path: '',
-        name: 'Home',
+        path: '/dashboard',
+        name: 'Dashboard',
         component: () => import('@/components/dashboard/Container.vue'),
       },
       {
@@ -76,7 +94,7 @@ const routes = [
     beforeEnter: (to, from, next) => {
       authenticationCheck()
       .then((isAuthenticated) => {
-        if(isAuthenticated) { next({ name: 'Home'}) } 
+        if(isAuthenticated) { next({ name: 'Dashboard'}) } 
         else { next() }
       })
     },
@@ -94,7 +112,7 @@ const routes = [
     beforeEnter: (to, from, next) => {
       authenticationCheck()
       .then((isAuthenticated) => {
-        if(isAuthenticated) { next({ name: 'Home'}) } 
+        if(isAuthenticated) { next({ name: 'Dashboard'}) } 
         else { next() }
       })
     },

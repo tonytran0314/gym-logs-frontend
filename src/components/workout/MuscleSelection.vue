@@ -14,7 +14,7 @@
     }
 
     const exit = () => {
-      router.push({ name: 'Home' })
+      router.push({ name: 'Dashboard' })
     }
 
     await exercise.getMuscles()

@@ -5,8 +5,8 @@
 
     const router = useRouter()
     
-    const goHome = () => {
-        router.push({ name: 'Home' })
+    const goToDashboard = () => {
+        router.push({ name: 'Dashboard' })
     }
 </script>
 
@@ -19,9 +19,9 @@
                 <p class="text-3xl">The page you were looking for <br> couldn't be found</p>
             </div>
             <div>
-                <Button @click="goHome" class="flex gap-3 items-center">
+                <Button @click="goToDashboard" class="flex gap-3 items-center">
                     <font-awesome-icon :icon="['fas', 'home']" class="size-5" />
-                    <span>Go Home</span>
+                    <span>Go to Dashboard</span>
                 </Button>
             </div>
         </div>

@@ -34,7 +34,7 @@ export const useAuthStore = defineStore('authStore', () => {
 
             if (response.status === 200) {
                 clearError()
-                goToHomePage()
+                goToDashboard()
                 stopLoading()
             } 
         } 
@@ -49,7 +49,7 @@ export const useAuthStore = defineStore('authStore', () => {
             startLoading()
             
             await api.post('/logout')
-            goToLoginPage()
+            goToGuestPage()
 
             stopLoading()
         } catch (error) {
@@ -80,12 +80,16 @@ export const useAuthStore = defineStore('authStore', () => {
     /* -------------------------------------------------------------------------- */
     /*                                LOCAL METHODS                               */
     /* -------------------------------------------------------------------------- */
-    const goToHomePage = () => {
-        router.push({ name: 'Home' })
+    const goToDashboard = () => {
+        router.push({ name: 'Dashboard' })
     }
 
     const goToLoginPage = () => {
         router.push({ name: 'Login' })
+    }
+
+    const goToGuestPage = () => {
+        router.push({ name: 'Guest' })
     }
 
     const startLoading = () => {

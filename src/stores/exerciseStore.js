@@ -53,7 +53,7 @@ export const useExerciseStore = defineStore('exerciseStore', () => {
     }
 
     const stop = async () => {
-        goToHomePage()
+        goToDashboard()
     }
 
     const saveWorkoutSet = async (set) => {
@@ -81,8 +81,8 @@ export const useExerciseStore = defineStore('exerciseStore', () => {
         router.push({ name: 'On Set Screen' })
     }
 
-    const goToHomePage = () => {
-        router.push({ name: 'Home' })
+    const goToDashboard = () => {
+        router.push({ name: 'Dashboard' })
     }
 
 

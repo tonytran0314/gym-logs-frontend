@@ -7,6 +7,7 @@ export const useNavigationStore = defineStore('navigationStore', () => {
     /*                                   STATES                                   */
     /* -------------------------------------------------------------------------- */
     const isSideNavigationOpen = ref(false)
+    const isGuestSideNavigationOpen = ref(false)
     const items = [
         {
             label: 'Dashboard',
@@ -42,6 +43,14 @@ export const useNavigationStore = defineStore('navigationStore', () => {
         isSideNavigationOpen.value = false
     }
 
+    const openGuestSideMenu = () => {
+        isGuestSideNavigationOpen.value = true
+    }
+
+    const closeGuestSideMenu = () => {
+        isGuestSideNavigationOpen.value = false
+    }
+
 
 
     /* -------------------------------------------------------------------------- */
@@ -50,8 +59,11 @@ export const useNavigationStore = defineStore('navigationStore', () => {
     return {
         items,
         isSideNavigationOpen,
+        isGuestSideNavigationOpen,
         open,
-        close
+        close,
+        openGuestSideMenu,
+        closeGuestSideMenu
     }
 
 })
