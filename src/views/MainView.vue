@@ -38,7 +38,7 @@
         <div class="hidden w-64 p-8 lg:flex flex-col justify-between bg-white dark:bg-gray-800">
             <div class="space-y-12">
                 <div class="flex flex-col gap-4">
-                    <div class="text-emerald-600 font-bold text-4xl">GYMLOGX</div>
+                    <div class="text-gray-900 dark:text-blue-50 font-bold text-4xl">GYM<span class="text-emerald-600 dark:text-emerald-400">LOGX</span></div>
                 </div>
                 <NavBar />
             </div>
@@ -63,7 +63,7 @@
                             <div class="flex justify-end">
                                 <CloseButton  @click="closeSideMenu" />
                             </div>
-                            <div class="text-emerald-600 font-bold text-4xl">GYMLOGX</div>
+                            <div class="text-gray-900 dark:text-blue-50 font-bold text-4xl">GYM<span class="text-emerald-600 dark:text-emerald-400">LOGX</span></div>
                         </div>
                         <NavBar />
                     </div>
