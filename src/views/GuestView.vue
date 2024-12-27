@@ -34,9 +34,9 @@
                 <!-- Burger navigation icon -->
                 <div class="sm:hidden" @click="openGuestNav"><font-awesome-icon :icon="['fas', 'bars']" class="size-6 cursor-pointer hover:bg-gray-800 p-3 rounded-full" /></div>
                 <!-- Navigation -->
-                <div class="hidden sm:flex gap-6 text-lg items-center">
-                    <div class="cursor-pointer hover:underline" @click="toLogIn">Log In</div>
-                    <Button class="w-full xl:w-auto" @click="toSignUp">Sign Up</Button>
+                <div class="hidden sm:flex gap-6 text-lg items-center w-48">
+                    <div class="flex-1 cursor-pointer hover:underline" @click="toLogIn">Log In</div>
+                    <Button class="flex-1 w-full xl:w-auto" @click="toSignUp">Sign Up</Button>
                 </div>
             </div>
             <div class="flex flex-col gap-10 md:gap-20">
