@@ -32,7 +32,7 @@
         fill: true,
         pointBackgroundColor: document.documentElement.classList.contains('dark') ? '#a7f3d0' : '#059669',
         pointBorderColor: document.documentElement.classList.contains('dark') ? '#1f2937' : '#fff',
-        pointRadius: 8,
+        pointRadius: 0,
       },
     ],
   };
