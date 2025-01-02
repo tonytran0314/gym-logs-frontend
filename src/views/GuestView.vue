@@ -55,11 +55,11 @@
                 <div class="text-center space-y-4">
                     <div class="text-3xl">What is <br /> Gym<span class="text-emerald-400">Logx</span> ?</div>
                     <div class="sm:px-20 md:px-32 lg:px-56">
-                        Lorem ipsum dolor sit amet consectetur adipisicing elit. Alias delectus eos velit cum minima eum expedita ab ducimus corrupti quo ipsum corporis odit eius, mollitia quia quibusdam commodi temporibus sed?
+                        Gym<span class="text-emerald-400">Logx</span> is an app designed to help users <span class="underline text-emerald-400">track and log their gym workouts</span>. <br /> It allows users to record details such as the exercise name, muscle group, weight lifted, number of sets, and reps, as well as the workout date. <br />GymLogx can visualize the progress <span class="underline text-emerald-400">through dynamic charts, providing users with insights into their performance over time</span>. Gym<span class="text-emerald-400">Logx</span> makes it easy to monitor your fitness journey.
                     </div>
                 </div>
                 <div class="text-center">
-                    <p class="text-xs">&copy; Gym<span class="text-emerald-400">Logx</span> - remembers your sets</p>
+                    <p class="text-xs">&copy; Gym<span class="text-emerald-400">Logx</span> - remembers your workout sets</p>
                 </div>
             </div>
             
