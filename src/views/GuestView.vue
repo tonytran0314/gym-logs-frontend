@@ -53,9 +53,35 @@
                     <div class="flex-1 flex justify-center items-center"><HeroSectionImage class="size-64 sm:size-96" /></div>
                 </div>
                 <div class="text-center space-y-4">
-                    <div class="text-3xl">What is <br /> Gym<span class="text-emerald-400">Logx</span> ?</div>
+                    <div class="text-3xl font-bold">What is <br /> Gym<span class="text-emerald-400">Logx</span> ?</div>
                     <div class="sm:px-20 md:px-32 lg:px-56">
                         Gym<span class="text-emerald-400">Logx</span> is an app designed to help users <span class="underline text-emerald-400">track and log their gym workouts</span>. <br /> It allows users to record details such as the exercise name, muscle group, weight lifted, number of sets, and reps, as well as the workout date. <br />GymLogx can visualize the progress <span class="underline text-emerald-400">through dynamic charts, providing users with insights into their performance over time</span>. Gym<span class="text-emerald-400">Logx</span> makes it easy to monitor your fitness journey.
+                    </div>
+                    <div>
+                        <img src="/dashboard.png" class="border rounded-lg border-emerald-600" alt="GymLogx Dashboard Image">
+                    </div>
+                </div>
+                <div class="space-y-8 text-center">
+                    <div class="bg-gray-800 p-3 lg:p-4 rounded-lg flex flex-col gap-5 w-full lg:flex-row-reverse lg:gap-6 lg:items-center">
+                        <div class="space-y-3 lg:space-y-8">
+                            <p class="text-2xl font-bold">Muscle Group Selection</p>
+                            <p>Select the muscle group you want to work on. This feature allows you to easily choose which part of the body to focus on during your workout</p>
+                        </div>
+                        <img src="/muscleSelection.png" class="rounded-lg lg:w-2/3" alt="GymLogx Muscle Selection Screen">
+                    </div>
+                    <div class="bg-gray-800 p-3 lg:p-4 rounded-lg flex flex-col gap-5 w-full lg:flex-row lg:gap-6 lg:items-center">
+                        <div class="space-y-3 lg:space-y-8">
+                            <p class="text-2xl font-bold">Workout Tracking</p>
+                            <p>Keep track of the exercise, set number, and weight lifted. This feature ensures you can monitor your progress throughout each set of your workout.</p>
+                        </div>
+                        <img src="/onset.png" class="rounded-lg lg:w-2/3" alt="GymLogx Muscle Selection Screen">
+                    </div>
+                    <div class="bg-gray-800 p-3 lg:p-4 rounded-lg flex flex-col gap-5 w-full lg:flex-row-reverse lg:gap-6 lg:items-center">
+                        <div class="space-y-3">
+                            <p class="text-2xl font-bold">Rest Between Sets with Timer</p>
+                            <p>Track the rest time between sets. This feature helps manage your recovery period, ensuring you're ready for the next set without losing track of time</p>
+                        </div>
+                        <img src="/rest.png" class="rounded-lg lg:w-2/3" alt="GymLogx Muscle Selection Screen">
                     </div>
                 </div>
                 <div class="text-center">
