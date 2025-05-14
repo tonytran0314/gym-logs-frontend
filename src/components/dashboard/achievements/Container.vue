@@ -15,7 +15,7 @@
 
         <div class="flex gap-6 w-full">
             <!-- Streak -->
-            <AchievementItem :highlighted="true">
+            <AchievementItem>
                 <template #title>Streak</template>
                 <template #icon><font-awesome-icon :icon="['fas', 'fire']" class="size-5 2xl:size-7" /></template>
                 <template #content>{{ achievement.streak }}</template>
@@ -24,7 +24,7 @@
             </AchievementItem>
 
             <!-- Workout days this month -->
-            <AchievementItem :highlighted="false">
+            <AchievementItem>
                 <template #title>This Month</template>
                 <template #icon><font-awesome-icon :icon="['fas', 'calendar-days']" class="size-5 2xl:size-7" /></template>
                 <template #content>{{ achievement.workoutDays }}</template>
@@ -35,7 +35,7 @@
 
         <div class="flex flex-col xl:flex-row gap-6 flex-1">
             <!-- Weight level on ... (the most popular exercise or the most current exercise) -->
-            <AchievementItem v-if="achievement.mostPopularExerciseComparison !== null" :highlighted="false">
+            <AchievementItem v-if="achievement.mostPopularExerciseComparison !== null">
                 <template #title>{{ achievement.mostPopularExerciseComparison.exerciseName }}</template>
                 <template #icon><font-awesome-icon :icon="['fas', 'star']" class="size-5 2xl:size-7" /></template>
                 <template #content>
@@ -51,7 +51,7 @@
                 <template #unit>{{ achievement.mostPopularExerciseComparison.comparison.metric }}</template>
                 <template #description>As the previous result</template>
             </AchievementItem>
-            <AchievementItem v-else :highlighted="false">
+            <AchievementItem v-else>
                 <template #title>Biceps Curl</template>
                 <template #icon><font-awesome-icon :icon="['fas', 'star']" class="size-5 2xl:size-7" /></template>
                 <template #content>
@@ -64,7 +64,7 @@
                 <template #description>As the previous result</template>
             </AchievementItem>
 
-            <AchievementItem :highlighted="false">
+            <AchievementItem>
                 <template #title>This week</template>
                 <template #icon><font-awesome-icon :icon="['fas', 'chart-simple']" class="size-5 2xl:size-7" /></template>
                 <template #content>{{ achievement.totalExerciseThisWeek }}</template>
