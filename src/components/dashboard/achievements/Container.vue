@@ -2,6 +2,21 @@
     import AchievementItem from '@/components/dashboard/achievements/Item.vue'
 
     import { useAchievementStore } from '@/stores/achievementStore'
+    import {
+        Card,
+        CardContent,
+        CardDescription,
+        CardFooter,
+        CardHeader,
+        CardTitle,
+    } from '@/components/ui/card'
+
+    import { Flame } from 'lucide-vue-next'
+    import { CalendarDays } from 'lucide-vue-next'
+    import { Star } from 'lucide-vue-next'
+    import { ChartNoAxesColumnIncreasing } from 'lucide-vue-next'
+    import { MoveDownRight } from 'lucide-vue-next'
+    import { MoveUpRight } from 'lucide-vue-next'
 
     const achievement = useAchievementStore()
 
@@ -13,64 +28,73 @@
 
         <!-- They should have unit (lbs, days, muscle,...) -->
 
-        <div class="flex gap-6 w-full">
-            <!-- Streak -->
-            <AchievementItem>
-                <template #title>Streak</template>
-                <template #icon><font-awesome-icon :icon="['fas', 'fire']" class="size-5 2xl:size-7" /></template>
-                <template #content>{{ achievement.streak }}</template>
-                <template #unit>days</template>
-                <template #description>Your workout streak is {{ achievement.streak }} days</template>
-            </AchievementItem>
-
-            <!-- Workout days this month -->
-            <AchievementItem>
-                <template #title>This Month</template>
-                <template #icon><font-awesome-icon :icon="['fas', 'calendar-days']" class="size-5 2xl:size-7" /></template>
-                <template #content>{{ achievement.workoutDays }}</template>
-                <template #unit>days</template>
-                <template #description>This month, you workout {{ achievement.workoutDays }} days</template>
-            </AchievementItem>
+        <div class="flex gap-6 w-1/2">
+            <Card class="w-1/2">
+                <CardHeader class="flex flex-row items-center justify-between space-y-0 pb-2">
+                    <CardTitle class="text-sm font-medium">Streak</CardTitle>
+                    <Flame class="w-4 h-4" />
+                </CardHeader>
+                <CardContent>
+                    <div class="text-2xl font-bold">{{ achievement.streak }} days</div>
+                    <p class="text-xs text-muted-foreground">
+                        Your workout streak is {{ achievement.streak }} days
+                    </p>
+                </CardContent>
+            </Card>
+            <Card class="w-1/2">
+                <CardHeader class="flex flex-row items-center justify-between space-y-0 pb-2">
+                    <CardTitle class="text-sm font-medium">This Month</CardTitle>
+                    <CalendarDays class="w-4 h-4" />
+                </CardHeader>
+                <CardContent>
+                    <div class="text-2xl font-bold">{{ achievement.workoutDays }} days</div>
+                    <p class="text-xs text-muted-foreground">
+                        This month, you workout {{ achievement.workoutDays }} days
+                    </p>
+                </CardContent>
+            </Card>
         </div>
 
-        <div class="flex flex-col xl:flex-row gap-6 flex-1">
-            <!-- Weight level on ... (the most popular exercise or the most current exercise) -->
-            <AchievementItem v-if="achievement.mostPopularExerciseComparison !== null">
-                <template #title>{{ achievement.mostPopularExerciseComparison.exerciseName }}</template>
-                <template #icon><font-awesome-icon :icon="['fas', 'star']" class="size-5 2xl:size-7" /></template>
-                <template #content>
-                    <div v-if="achievement.mostPopularExerciseComparison.comparison.direction === 'increase'">
-                        <font-awesome-icon :icon="['fas', 'up-long']" size="xs" class="text-emerald-400" />
+        
+        <div class="flex gap-6 w-1/2">
+            <Card class="w-1/2" v-if="achievement.mostPopularExerciseComparison !== null">
+                <CardHeader class="flex flex-row items-center justify-between space-y-0 pb-2">
+                    <CardTitle class="text-sm font-medium max-w-[75%] line-clamp-2">{{ achievement.mostPopularExerciseComparison.exerciseName }}</CardTitle>
+                    <Star class="w-4 h-4" />
+                </CardHeader>
+                <CardContent>
+                    <div class="flex items-center">
+                        <MoveUpRight v-if="achievement.mostPopularExerciseComparison.comparison.direction === 'increase'" class="w-4 h-4 mr-2 text-green-500" />
+                        <MoveDownRight v-else-if="achievement.mostPopularExerciseComparison.comparison.direction === 'decrease'" class="w-4 h-4 mr-2 text-red-500" />
+                        <div class="text-2xl font-bold">{{ achievement.mostPopularExerciseComparison.comparison.value }}</div>
+                        <span class="text-xs text-muted-foreground ml-2">{{ achievement.mostPopularExerciseComparison.comparison.metric }}</span>
                     </div>
-                    <div v-else-if="achievement.mostPopularExerciseComparison.comparison.direction === 'decrease'">
-                        <font-awesome-icon :icon="['fas', 'down-long']" size="xs" class="text-red-400" />
-                    </div>
-                    <div v-else></div>
-                    {{ achievement.mostPopularExerciseComparison.comparison.value }}
-                </template>
-                <template #unit>{{ achievement.mostPopularExerciseComparison.comparison.metric }}</template>
-                <template #description>As the previous result</template>
-            </AchievementItem>
-            <AchievementItem v-else>
-                <template #title>Biceps Curl</template>
-                <template #icon><font-awesome-icon :icon="['fas', 'star']" class="size-5 2xl:size-7" /></template>
-                <template #content>
-                    <div>
-                        <font-awesome-icon :icon="['fas', 'up-long']" size="xs" class="text-emerald-400" />
-                    </div>
-                    <div>0</div>
-                </template>
-                <template #unit>reps</template>
-                <template #description>As the previous result</template>
-            </AchievementItem>
+                    <p class="text-xs text-muted-foreground">Compared to previous result</p>
+                </CardContent>
+            </Card>
+            <Card class="w-1/2" v-else>
+                <CardHeader class="flex flex-row items-center justify-between space-y-0 pb-2">
+                    <CardTitle class="text-sm font-medium">Most Popular Exercise</CardTitle>
+                    <Star class="w-4 h-4" />
+                </CardHeader>
+                <CardContent>
+                    <div class="text-2xl font-bold">No data</div>
+                    <p class="text-xs text-muted-foreground">Start tracking to see your progress</p>
+                </CardContent>
+            </Card>
 
-            <AchievementItem>
-                <template #title>This week</template>
-                <template #icon><font-awesome-icon :icon="['fas', 'chart-simple']" class="size-5 2xl:size-7" /></template>
-                <template #content>{{ achievement.totalExerciseThisWeek }}</template>
-                <template #unit>exercises</template>
-                <template #description>This week, you have done {{ achievement.totalExerciseThisWeek }} exercises</template>
-            </AchievementItem>
+            <Card class="w-1/2">
+                <CardHeader class="flex flex-row items-center justify-between space-y-0 pb-2">
+                    <CardTitle class="text-sm font-medium">This Week</CardTitle>
+                    <ChartNoAxesColumnIncreasing class="w-4 h-4" />
+                </CardHeader>
+                <CardContent>
+                    <div class="text-2xl font-bold">{{ achievement.totalExerciseThisWeek }} exercises</div>
+                    <p class="text-xs text-muted-foreground">
+                        This week, you have done {{ achievement.totalExerciseThisWeek }} exercises
+                    </p>
+                </CardContent>
+            </Card>
         </div>
     </div>
 </template>
