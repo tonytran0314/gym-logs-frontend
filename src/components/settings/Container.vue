@@ -1,6 +1,15 @@
 <script setup>
     import { useThemeStore } from '@/stores/themeStore'
     import { ref } from 'vue'
+    import {
+  Select,
+  SelectContent,
+  SelectGroup,
+  SelectItem,
+  SelectLabel,
+  SelectTrigger,
+  SelectValue,
+} from '@/components/ui/select'
 
     const theme = useThemeStore()
     const selectedTheme = localStorage.getItem('theme') ? ref(localStorage.getItem('theme')) : ref('dark')
@@ -23,10 +32,19 @@
                     <div class="flex justify-between items-center">
                         <div class="text-gray-900 dark:text-blue-50">Theme</div>
                         <div>
-                            <select v-model="selectedTheme" @change="updateThemeMode" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-emerald-600 focus:border-emerald-600 block w-full p-2 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-emerald-600 dark:focus:border-emerald-600">
-                                <option value="light">Light</option>
-                                <option value="dark">Dark</option>
-                            </select>
+                            <Select v-model="selectedTheme" @update:modelValue="updateThemeMode">
+                                <SelectTrigger>
+                                    <SelectValue placeholder="Select a fruit" />
+                                </SelectTrigger>
+                                <SelectContent>
+                                    <SelectGroup>
+                                        <SelectLabel>Theme</SelectLabel>
+                                        <SelectItem value="light">Light</SelectItem>
+                                        <SelectItem value="dark">Dark</SelectItem>
+                                        <!-- <SelectItem value="system">System</SelectItem> -->
+                                    </SelectGroup>
+                                </SelectContent>
+                            </Select>
                         </div>
                     </div>
                 </div>
