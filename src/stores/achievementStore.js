@@ -2,7 +2,7 @@ import { defineStore } from 'pinia'
 import { ref } from 'vue'
 import { api } from '@/services/axios.js'
 
-export const useArchivementStore = defineStore('archivementStore', () => {
+export const useAchievementStore = defineStore('achievementStore', () => {
 
     /* -------------------------------------------------------------------------- */
     /*                                   STATES                                   */
