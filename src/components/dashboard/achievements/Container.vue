@@ -59,7 +59,7 @@
         <div class="flex gap-6 w-1/2">
             <Card class="w-1/2" v-if="achievement.mostPopularExerciseComparison !== null">
                 <CardHeader class="flex flex-row items-center justify-between space-y-0 pb-2">
-                    <CardTitle class="text-sm font-medium max-w-[75%] line-clamp-2">{{ achievement.mostPopularExerciseComparison.exerciseName }}</CardTitle>
+                    <CardTitle class="text-sm font-medium max-w-[75%] line-clamp-1">{{ achievement.mostPopularExerciseComparison.exerciseName }}</CardTitle>
                     <Star class="w-4 h-4" />
                 </CardHeader>
                 <CardContent>

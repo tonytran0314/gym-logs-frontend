@@ -1,51 +1,44 @@
 <script setup>
-    import { useThemeStore } from '@/stores/themeStore'
-    import { ref } from 'vue'
-    import {
-  Select,
-  SelectContent,
-  SelectGroup,
-  SelectItem,
-  SelectLabel,
-  SelectTrigger,
-  SelectValue,
-} from '@/components/ui/select'
-
-    const theme = useThemeStore()
-    const selectedTheme = localStorage.getItem('theme') ? ref(localStorage.getItem('theme')) : ref('dark')
-
-    const updateThemeMode = () => {
-        theme.switchTo(selectedTheme.value)
-    }
+    import { Button } from '@/components/ui/button'
+    import { DropdownMenu, DropdownMenuContent, DropdownMenuItem, DropdownMenuTrigger } from '@/components/ui/dropdown-menu'
+    import { Icon } from '@iconify/vue'
+    import { useColorMode } from '@vueuse/core'
+    const mode = useColorMode()
 </script>
 
 <template>
-    <div class="bg-white dark:bg-gray-800 p-8 rounded-2xl space-y-12">
-        <h1 class="text-4xl dark:text-blue-50">Settings</h1>
+    <div class="p-8 rounded-2xl space-y-12 bg-white dark:bg-gray-800">
+        
+        <h1 class="text-4xl">Settings</h1>
         <div class="space-y-8">
             <div class="space-y-6">
                 <div class="space-y-1">
-                    <p class="text-sm text-gray-400">APPEARANCE</p>
-                    <div class="h-[1px] w-full bg-gray-300 dark:bg-gray-600"></div>
+                    <p class="text-sm text-muted-foreground">APPEARANCE</p>
+                    <div class="h-[1px] w-full border-b"></div>
                 </div>
                 <div>
                     <div class="flex justify-between items-center">
-                        <div class="text-gray-900 dark:text-blue-50">Theme</div>
-                        <div>
-                            <Select v-model="selectedTheme" @update:modelValue="updateThemeMode">
-                                <SelectTrigger>
-                                    <SelectValue placeholder="Select a fruit" />
-                                </SelectTrigger>
-                                <SelectContent>
-                                    <SelectGroup>
-                                        <SelectLabel>Theme</SelectLabel>
-                                        <SelectItem value="light">Light</SelectItem>
-                                        <SelectItem value="dark">Dark</SelectItem>
-                                        <!-- <SelectItem value="system">System</SelectItem> -->
-                                    </SelectGroup>
-                                </SelectContent>
-                            </Select>
-                        </div>
+                        <div>Theme</div>
+                        <DropdownMenu>
+                            <DropdownMenuTrigger as-child>
+                            <Button variant="outline">
+                                <Icon icon="radix-icons:moon" class="h-[1.2rem] w-[1.2rem] rotate-0 scale-100 transition-all dark:-rotate-90 dark:scale-0" />
+                                <Icon icon="radix-icons:sun" class="absolute h-[1.2rem] w-[1.2rem] rotate-90 scale-0 transition-all dark:rotate-0 dark:scale-100" />
+                                <span class="sr-only">Toggle theme</span>
+                            </Button>
+                            </DropdownMenuTrigger>
+                            <DropdownMenuContent align="end">
+                            <DropdownMenuItem @click="mode = 'light'">
+                                Light
+                            </DropdownMenuItem>
+                            <DropdownMenuItem @click="mode = 'dark'">
+                                Dark
+                            </DropdownMenuItem>
+                            <DropdownMenuItem @click="mode = 'auto'">
+                                System
+                            </DropdownMenuItem>
+                            </DropdownMenuContent>
+                        </DropdownMenu>
                     </div>
                 </div>
             </div>

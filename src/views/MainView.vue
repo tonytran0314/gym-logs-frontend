@@ -1,21 +1,16 @@
 <script setup>
-    import { useRouter } from 'vue-router'
     import { useNavigationStore } from '@/stores/navigationStore'
     import { useNotificationStore } from '@/stores/notificationStore'
+    import { Bell } from 'lucide-vue-next'
     
-    import Button from '@/components/form/Button.vue'
+    // import Button from '@/components/form/Button.vue'
     import NavBar from '@/components/navigation/NavBar.vue'
     import UserStatus from '@/components/profile/UserStatus.vue'
     import UserStatusLoadingAnimation from '@/components/loading_animation/UserStatus.vue'
     import CloseButton from '@/components/modals/CloseButton.vue'
 
-    const router = useRouter()
     const navigation = useNavigationStore()
     const notification = useNotificationStore()
-
-    const selectMuscleAndExercise = () => {
-        router.push({ name: 'Muscle Selection Screen' })
-    }
 
     const openSideMenu = () => {
         navigation.open()
@@ -34,15 +29,6 @@
     <div class="flex h-screen relative">
 
         <!-- LEFT COLUMN -->
-        <!-- MENU FOR LARGE SCREENS -->
-        <div class="hidden w-64 p-8 lg:flex flex-col justify-between bg-white dark:bg-gray-800">
-            <div class="space-y-12">
-                <div class="flex flex-col gap-4">
-                    <div class="text-gray-900 dark:text-blue-50 font-bold text-4xl">GYM<span class="text-emerald-600 dark:text-emerald-400">LOGX</span></div>
-                </div>
-                <NavBar />
-            </div>
-        </div>
         <!-- MENU FOR SMALL SCREENS -->
         <div>
             <Transition name="fade-bg">
@@ -72,20 +58,24 @@
         </div>
 
         <!-- RIGHT COLUMN -->
-        <div class="flex-grow overflow-auto bg-blue-50 dark:bg-gray-900">
-            <div class="flex justify-between items-center bg-white dark:bg-gray-800 py-5 px-8">
+        <div class="flex-grow bg-white dark:bg-gray-900">
+            <div class="flex justify-between items-center bg-white dark:bg-gray-900 py-5 px-8 shadow-md">
+                <div>
+                    <div class="text-gray-900 dark:text-blue-50 font-bold text-4xl">GYM<span class="text-emerald-600 dark:text-emerald-400">LOGX</span></div>
+                </div>
                 <div @click="openSideMenu" 
                     class="lg:hidden size-12 flex justify-center items-center rounded-full hover:bg-gray-200 dark:hover:bg-gray-900 cursor-pointer">
                     <font-awesome-icon :icon="['fas', 'bars']" class="text-gray-900 dark:text-blue-50" size="xl" />
                 </div>
-                <Button @click="selectMuscleAndExercise" class="flex gap-2 items-center">
-                    <font-awesome-icon :icon="['fas', 'dumbbell']" class="hidden sm:block md:size-4 lg:size-6" />
-                    <span class="text-xs sm:text-sm md:text-md">Workout now</span>
-                </Button>
+
+                <div class="flex items-center gap-4">
+                    <router-link to="/dashboard">Dashboard</router-link>
+                    <router-link to="/history">Workout History</router-link>
+                </div>
                 
                 <div class="flex items-center gap-1 sm:gap-3 md:gap-5 lg:gap-6">
                     <div @click="toggleNotification" class="relative">
-                        <font-awesome-icon :icon="['fas', 'bell']" class="size-4 md:size-5 text-gray-900 dark:text-blue-50 p-2 rounded-full hover:bg-emerald-100 cursor-pointer hover:text-emerald-6 00 hover:text-emerald-600 dark:hover:text-emerald-600" />
+                        <Bell class="cursor-pointer" />
                         <div v-if="notification.isOpen" class="h-auto min-w-56 absolute right-0 top-10 rounded-lg bg-white border border-emerald-600 dark:bg-gray-800 p-4 shadow-lg space-y-4">
                             <div class="text-lg text-gray-900 dark:text-blue-50">Notifications</div>
                             <div class="text-gray-700 dark:text-gray-400">Coming soon ...</div>
@@ -99,7 +89,7 @@
                     </Suspense>
                 </div>
             </div>
-            <div class="p-8 bg-blue-50 dark:bg-gray-900">
+            <div class="p-8 bg-white dark:bg-gray-900">
                 <router-view />
             </div>
         </div>

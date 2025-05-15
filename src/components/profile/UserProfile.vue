@@ -1,9 +1,10 @@
 <script setup>
     import { useProfileStore } from '@/stores/profileStore'
     import { reactive } from 'vue'
+    import { Button } from '@/components/ui/button'
 
     import Input from '@/components/form/Input.vue'
-    import Button from '@/components/form/Button.vue'
+    // import Button from '@/components/form/Button.vue'
     import LoadingButton from '@/components/form/LoadingButton.vue'
     import Error from '@/components/form/Error.vue'
 
@@ -45,7 +46,7 @@
                 <Error v-show="profile.errors.email">{{ profile.errors.email }}</Error>
             </div>
             <div>
-                <LoadingButton v-if="profile.isLoading" />
+                <Button v-if="profile.isLoading">Loading...</Button>
                 <Button v-else>Update Profile</Button>
             </div>
         </form>
