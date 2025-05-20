@@ -9,6 +9,9 @@
     import UserStatusLoadingAnimation from '@/components/loading_animation/UserStatus.vue'
     import CloseButton from '@/components/modals/CloseButton.vue'
 
+    import AppSidebar from '@/components/AppSidebar.vue'
+    import { SidebarProvider } from '@/components/ui/sidebar'
+
     const navigation = useNavigationStore()
     const notification = useNotificationStore()
 
@@ -26,11 +29,50 @@
 </script>
 
 <template>
-    <div class="flex h-screen relative">
+    <div>
 
         <!-- LEFT COLUMN -->
+        <!-- SIDE BAR -->
+        <SidebarProvider>
+            <AppSidebar />
+            <main class="flex h-screen relative">
+                <!-- <RouterView /> -->
+                <!-- RIGHT COLUMN -->
+                <div class="w-full bg-white dark:bg-gray-900">
+                    <div class="flex justify-between items-center bg-white dark:bg-gray-900 py-5 px-8 shadow-md">
+                        <div>
+                            <div class="text-gray-900 dark:text-blue-50 font-bold text-4xl">GYM<span class="text-emerald-600 dark:text-emerald-400">LOGX</span></div>
+                        </div>
+                        <div @click="openSideMenu" 
+                            class="lg:hidden size-12 flex justify-center items-center rounded-full hover:bg-gray-200 dark:hover:bg-gray-900 cursor-pointer">
+                            <font-awesome-icon :icon="['fas', 'bars']" class="text-gray-900 dark:text-blue-50" size="xl" />
+                        </div>
+                        
+                        <div class="flex items-center gap-1 sm:gap-3 md:gap-5 lg:gap-6">
+                            <div @click="toggleNotification" class="relative">
+                                <Bell class="cursor-pointer" />
+                                <div v-if="notification.isOpen" class="h-auto min-w-56 absolute right-0 top-10 rounded-lg bg-white border border-emerald-600 dark:bg-gray-800 p-4 shadow-lg space-y-4">
+                                    <div class="text-lg text-gray-900 dark:text-blue-50">Notifications</div>
+                                    <div class="text-gray-700 dark:text-gray-400">Coming soon ...</div>
+                                </div>
+                            </div>
+                            <Suspense>
+                                <UserStatus />
+                                <template #fallback>
+                                    <UserStatusLoadingAnimation />
+                                </template>
+                            </Suspense>
+                        </div>
+                    </div>
+                    <div class="p-8 bg-white dark:bg-gray-900">
+                        <router-view />
+                    </div>
+                </div>
+            </main>
+        </SidebarProvider>
+
         <!-- MENU FOR SMALL SCREENS -->
-        <div>
+        <!-- <div>
             <Transition name="fade-bg">
                 <div 
                     v-if="navigation.isSideNavigationOpen" 
@@ -55,44 +97,9 @@
                     </div>
                 </div>
             </Transition>
-        </div>
+        </div> -->
 
-        <!-- RIGHT COLUMN -->
-        <div class="flex-grow bg-white dark:bg-gray-900">
-            <div class="flex justify-between items-center bg-white dark:bg-gray-900 py-5 px-8 shadow-md">
-                <div>
-                    <div class="text-gray-900 dark:text-blue-50 font-bold text-4xl">GYM<span class="text-emerald-600 dark:text-emerald-400">LOGX</span></div>
-                </div>
-                <div @click="openSideMenu" 
-                    class="lg:hidden size-12 flex justify-center items-center rounded-full hover:bg-gray-200 dark:hover:bg-gray-900 cursor-pointer">
-                    <font-awesome-icon :icon="['fas', 'bars']" class="text-gray-900 dark:text-blue-50" size="xl" />
-                </div>
-
-                <div class="flex items-center gap-4">
-                    <router-link to="/dashboard">Dashboard</router-link>
-                    <router-link to="/history">Workout History</router-link>
-                </div>
-                
-                <div class="flex items-center gap-1 sm:gap-3 md:gap-5 lg:gap-6">
-                    <div @click="toggleNotification" class="relative">
-                        <Bell class="cursor-pointer" />
-                        <div v-if="notification.isOpen" class="h-auto min-w-56 absolute right-0 top-10 rounded-lg bg-white border border-emerald-600 dark:bg-gray-800 p-4 shadow-lg space-y-4">
-                            <div class="text-lg text-gray-900 dark:text-blue-50">Notifications</div>
-                            <div class="text-gray-700 dark:text-gray-400">Coming soon ...</div>
-                        </div>
-                    </div>
-                    <Suspense>
-                        <UserStatus />
-                        <template #fallback>
-                            <UserStatusLoadingAnimation />
-                        </template>
-                    </Suspense>
-                </div>
-            </div>
-            <div class="p-8 bg-white dark:bg-gray-900">
-                <router-view />
-            </div>
-        </div>
+        
     </div>
 </template>
 
